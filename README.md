@@ -1,27 +1,21 @@
-# subnet
+# Bastion Host
 
-![image](https://github.com/user-attachments/assets/e2b45923-4f2f-44f1-90a8-f2563499a39b)
-
-<br>
-<br>
-<br>
-
-## 1. Public Subnet
-### 서브넷 생성 → 인터넷 게이트웨이 생성 → 라우팅 테이블 생성 → 라우팅 편집, 명시적 서브넷 연결
-
-![image](https://github.com/user-attachments/assets/c93aff18-11be-45aa-b9ea-7167604b8b2b)
-
-<br>
-
-## 2. Private Subnet
-### 서브넷 생성 → EIP 생성 → Nat 게이트웨이 생성 → 라우팅 테이블 생성 → 라우팅 편집, 명시적 서브넷 연결
-
-![image](https://github.com/user-attachments/assets/0ca82bb7-df6d-46b4-b1d4-d4aea2def70a)
+![image](https://github.com/user-attachments/assets/97bebd3e-d9f5-4edf-b5da-1fe299e28f25)
 
 <br>
 <br>
 <br>
 
-## 전체
+## 1. AWS Key pair
+### AWS 키페어 생성
 
-![image](https://github.com/user-attachments/assets/23ef092d-116c-4962-b858-12cf0d1cfa5c)
+
+<br>
+
+## 2. Bastion Host EC2 instance
+### Bastion Host로 사용할 EC2 인스턴스 생성
+
+
+<br>
+<br>
+<br>
