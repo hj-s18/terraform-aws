@@ -4,6 +4,7 @@
 
 <br>
 <br>
+<br>
 
 ## 1. Public Subnet
 ### 서브넷 생성 → 인터넷 게이트웨이 생성 → 라우팅 테이블 생성 → 라우팅 편집, 명시적 서브넷 연결
@@ -18,9 +19,7 @@
 ![image](https://github.com/user-attachments/assets/0ca82bb7-df6d-46b4-b1d4-d4aea2def70a)
 
 <br>
-
----
-
+<br>
 <br>
 
 ## 전체
