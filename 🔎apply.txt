@@ -1,0 +1,3 @@
+aws_vpc.tf_vpc: Creation complete after 1s [id=vpc-XXXX]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
