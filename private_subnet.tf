@@ -46,7 +46,7 @@ resource "aws_subnet" "tf_rds_sub_2" {
 
 # Single EIP associated with an instance
 resource "aws_eip" "tf_eip" {
-  domain = "vpc"
+  domain = "vpc"  # (Optional) Indicates if this EIP is for use in VPC.
   
   tags = {
     Name = "tf_eip"
@@ -55,8 +55,8 @@ resource "aws_eip" "tf_eip" {
 
 # Public NAT
 resource "aws_nat_gateway" "tf_nat" {
-  allocation_id = aws_eip.tf_eip.allocation_id
-  subnet_id     = aws_subnet.tf_pub_sub_2.id
+  allocation_id = aws_eip.tf_eip.allocation_id  # (Optional) The Allocation ID of the Elastic IP address for the NAT Gateway. Required for connectivity_type of public.
+  subnet_id     = aws_subnet.tf_pub_sub_2.id  # (Required) The Subnet ID of the subnet in which to place the NAT Gateway.
   depends_on = [aws_eip.tf_eip]
 
   tags = {
