@@ -68,7 +68,7 @@ Terraform will perform the following actions:
           + "Name" = "vss_rds"
         }
       + timezone                              = (known after apply)
-      + username                              = "foo"
+      + username                              = "admin"
       + vpc_security_group_ids                = (known after apply)
     }
 
