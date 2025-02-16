@@ -645,3 +645,7 @@ Terraform will perform the following actions:
     }
 
 Plan: 28 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + bastion_public_ip = (known after apply)
+  + rds_endpoint      = (known after apply)
