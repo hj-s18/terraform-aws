@@ -40,6 +40,22 @@ VPC 내에서 Private Hosted Zone을 사용하려면 DNS 해석(DNS Resolution) 
 <br>
 <br>
 
+# 참고
+AWS에서 EC2 인스턴스가 VPC 내부에서 Route 53 Private Hosted Zone을 조회할 때, VPC의 DNS 서버를 사용해야 함
+<br>
+AWS VPC에서는 VPC의 CIDR 블록이 10.0.0.0/16 라면, 다음과 같음
+- VPC 기본 게이트웨이: 10.0.0.1
+- VPC 기본 DNS 서버: 10.0.0.2
+<br>
+이 DNS 서버를 통해 다음을 해석함
+- AWS 내부 서비스 도메인 (.amazonaws.com)
+- Private Hosted Zone에서 설정한 커스텀 도메인 (rds.tf.private.com)
+
+
+<br>
+<br>
+<br>
+
 # Bastion Host 에서 Route53 CNAME 사용하여 RDS 접근 성공
 
 ```
