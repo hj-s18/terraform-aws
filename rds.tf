@@ -46,7 +46,7 @@ resource "aws_db_instance" "tf_rds" {
   instance_class              = "db.t3.micro"                                  # (Required) The instance type of the RDS instance.
   db_name                     = "mydb"                                         # (Optional) The name of the database to create when the DB instance is created. 
   manage_master_user_password = true                                           # (Optional) Set to true to allow RDS to manage the master user password in Secrets Manager. Cannot be set if password is provided.
-  # password                  = "foobarbaz"                                    # (Required unless manage_master_user_password is set to true or unless a snapshot_identifier or replicate_source_db is provided or manage_master_user_password is set.) Password for the master DB user. Cannot be set if manage_master_user_password is set to true.
+  # password                  = "testpass"                                     # (Required unless manage_master_user_password is set to true or unless a snapshot_identifier or replicate_source_db is provided or manage_master_user_password is set.) Password for the master DB user. Cannot be set if manage_master_user_password is set to true.
   multi_az                    = true                                           # (Optional) Specifies if the RDS instance is multi-AZ
   publicly_accessible         = false                                          # (Optional) Bool to control if instance is publicly accessible. Default is false.
   vpc_security_group_ids      = [aws_security_group.tf_rds_sg.id]              # (Optional) List of VPC security groups to associate.
