@@ -1,9 +1,13 @@
 # Route53 (프라이빗 호스팅 영역) CNAME 확인
 ![route53](https://github.com/user-attachments/assets/e8726aa9-2af4-42e1-83de-06e408d8eea8)
 
-# Bastion Host 에서 Route53 CNAME 사용하여 RDS 접근
+<br>
+<br>
+<br>
 
-```bash
+# Bastion Host 에서 Route53 CNAME 사용하여 RDS 접근 실패
+
+```
 # Bastion 인스턴스에서 RDS 접근 실패
 [ec2-user@ip-10-0-1-230 ~]$ mysql -u admin -h rds.tf.private.com -p'<password>'
 ERROR 2005 (HY000): Unknown MySQL server host 'rds.tf.private.com' (2)
@@ -22,12 +26,23 @@ Server:         10.0.0.2
 Address:        10.0.0.2#53
 
 ** server can't find rds.tf.private.com: NXDOMAIN
+```
 
-----------------------------------------------------------------------------------------------------------------
+<br>
+<br>
+<br>
+
+# Route53 Private Hosted Zone 사용 조건
 VPC 내에서 Private Hosted Zone을 사용하려면 DNS 해석(DNS Resolution) 및 DNS 호스트네임(DNS Hostnames) 설정 필요
 ⇒ VPC 설정에서 DNS 호스트 이름 활성화
-----------------------------------------------------------------------------------------------------------------
 
+<br>
+<br>
+<br>
+
+# Bastion Host 에서 Route53 CNAME 사용하여 RDS 접근 성공
+
+```
 # 10.0.0.2에 설정된 DNS 서버가 rds.tf.private.com의 IP 주소 조회하여 반환 가능
 [ec2-user@ip-10-0-1-99 ~]$ nslookup rds.tf.private.com 10.0.0.2
 Server:         10.0.0.2
@@ -53,3 +68,7 @@ Bye
 
 [ec2-user@ip-10-0-1-99 ~]$
 ```
+
+<br>
+<br>
+<br>
