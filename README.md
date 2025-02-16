@@ -4,15 +4,15 @@
 # Bastion Host 에서 RDS 접근 확인
 
 ```bash
-[terraform@ip-192-168-10-138 terraform-aws]$ ssh -i /home/terraform/tf-bastion-key.pem ec2-user@<Bastion_Public_IP>
-[ec2-user@ip-10-0-1-46 ~]$ sudo yum update -y
-[ec2-user@ip-10-0-1-46 ~]$ sudo yum install mysql -y
+[terraform@terraform terraform-aws]$ ssh -i /home/terraform/tf-bastion-key.pem ec2-user@<Bastion_Public_IP>
+[ec2-user@bastion ~]$ sudo yum update -y
+[ec2-user@bastion ~]$ sudo yum install mysql -y
 Installed:
   mariadb.x86_64 1:5.5.68-1.amzn2.0.1
 
 Complete!
 
-[ec2-user@ip-10-0-1-46 ~]$ mysql -u admin -h <RDS endpoint> -p'<password>'
+[ec2-user@bastion ~]$ mysql -u admin -h <RDS endpoint> -p'<password>'
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
 Your MySQL connection id is 55
 Server version: 8.0.40 Source distribution
@@ -35,10 +35,12 @@ MySQL [(none)]> show databases;
 
 MySQL [(none)]> use mydb;
 Database changed
+
 MySQL [mydb]> show tables;
 Empty set (0.00 sec)
 
 MySQL [mydb]> exit
 Bye
-[ec2-user@ip-10-0-1-46 ~]$
+
+[ec2-user@bastion ~]$
 ```
