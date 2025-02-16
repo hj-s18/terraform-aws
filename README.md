@@ -41,7 +41,7 @@ VPC 내에서 Private Hosted Zone을 사용하려면 DNS 해석(DNS Resolution) 
 <br>
 
 # 참고
-AWS에서 EC2 인스턴스가 VPC 내부에서 Route 53 Private Hosted Zone을 조회할 때, VPC의 DNS 서버를 사용해야 함
+AWS에서 EC2 인스턴스가 VPC 내부에서 Route 53 Private Hosted Zone을 조회할 때, VPC의 DNS 서버를 사용해야 함 <br>
 <br>
 AWS VPC에서는 VPC의 CIDR 블록이 10.0.0.0/16 라면, 다음과 같음 <br>
 \- VPC 기본 게이트웨이: 10.0.0.1 <br>
