@@ -55,6 +55,6 @@ resource "aws_db_instance" "tf_rds" {
   storage_type                = "gp3"                                          # (Optional) One of "standard", "gp2", "gp3" (general purpose SSD that needs iops independently), "io1" or "io2". The default is "io1" if iops is specified, "gp2" if not.
   
   tags = {
-    Name                      = "vss_rds"
+    Name                      = "tf_rds"
   }
 }
