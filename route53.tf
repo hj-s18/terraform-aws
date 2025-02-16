@@ -5,7 +5,7 @@ resource "aws_route53_zone" "tf_route53_private" {
   }
 }
 
-resource "aws_route53_record" "rds_mysql" {
+resource "aws_route53_record" "tf_rds_endpoint" {
   zone_id = aws_route53_zone.tf_route53_private.zone_id    # (Required) The ID of the hosted zone to contain this record.
   name    = "rds.tf.private.com"                           # (Required) The name of the record.
   type    = "CNAME"                                        # (Required) The record type. Valid values are A, AAAA, CAA, CNAME, DS, MX, NAPTR, NS, PTR, SOA, SPF, SRV and TXT.
