@@ -1,6 +1,5 @@
 # Route53 (프라이빗 호스팅 영역) CNAME 확인
 ![route53](https://github.com/user-attachments/assets/e8726aa9-2af4-42e1-83de-06e408d8eea8)
-
 <br>
 <br>
 <br>
@@ -27,7 +26,6 @@ Address:        10.0.0.2#53
 
 ** server can't find rds.tf.private.com: NXDOMAIN
 ```
-
 <br>
 <br>
 <br>
@@ -35,7 +33,6 @@ Address:        10.0.0.2#53
 # Route53 Private Hosted Zone 사용 조건
 VPC 내에서 Private Hosted Zone을 사용하려면 DNS 해석(DNS Resolution) 및 DNS 호스트네임(DNS Hostnames) 설정 필요 <br>
 ⇒ VPC 설정에서 DNS 호스트 이름 활성화
-
 <br>
 <br>
 <br>
@@ -50,8 +47,6 @@ AWS VPC에서는 VPC의 CIDR 블록이 10.0.0.0/16 라면, 다음과 같음
 이 DNS 서버를 통해 다음을 해석함
 - AWS 내부 서비스 도메인 (.amazonaws.com)
 - Private Hosted Zone에서 설정한 커스텀 도메인 (rds.tf.private.com)
-
-
 <br>
 <br>
 <br>
@@ -84,7 +79,6 @@ Bye
 
 [ec2-user@ip-10-0-1-99 ~]$
 ```
-
 <br>
 <br>
 <br>
