@@ -7,6 +7,14 @@
 [terraform@terraform terraform-aws]$ ssh -i /home/terraform/tf-bastion-key.pem ec2-user@<Bastion_Public_IP>
 
 [ec2-user@bastion ~]$ sudo yum update -y
+Installed:
+  kernel.x86_64 0:5.10.233-224.894.amzn2
+
+Updated:
+  aws-cfn-bootstrap.noarch 0:2.0-32.amzn2   python.x86_64 0:2.7.18-1.amzn2.0.10  python-devel.x86_64 0:2.7.18-1.amzn2.0.10  python-libs.x86_64 0:2.7.18-1.amzn2.0.10  python3.x86_64 0:3.7.16-1.amzn2.0.9
+  python3-libs.x86_64 0:3.7.16-1.amzn2.0.9  system-release.x86_64 1:2-17.amzn2
+
+Complete!
 
 [ec2-user@bastion ~]$ sudo yum install mysql -y
 Installed:
