@@ -5,5 +5,5 @@ output "bastion_public_ip" {
 
 # RDS 정보 출력
 output "rds_endpoint" {
-  value = aws_db_instance.tf_rds.endpoint
+  value = aws_route53_record.tf_rds_endpoint.name
 }
