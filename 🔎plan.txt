@@ -626,7 +626,7 @@ Terraform will perform the following actions:
       + default_route_table_id               = (known after apply)
       + default_security_group_id            = (known after apply)
       + dhcp_options_id                      = (known after apply)
-      + enable_dns_hostnames                 = (known after apply)
+      + enable_dns_hostnames                 = true
       + enable_dns_support                   = true
       + enable_network_address_usage_metrics = (known after apply)
       + id                                   = (known after apply)
