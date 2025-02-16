@@ -1,5 +1,5 @@
-# RDS Secrets Manager 확인
-![rds-secret-manager](https://github.com/user-attachments/assets/8bb6eca0-2a89-4795-a2e6-fe6e50bee672)
+# Route53 (프라이빗 호스팅 영역) CNAME 확인
+![route53](https://github.com/user-attachments/assets/e8726aa9-2af4-42e1-83de-06e408d8eea8)
 
 # Bastion Host 에서 Route53 CNAME 사용하여 RDS 접근
 
