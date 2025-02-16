@@ -5,7 +5,9 @@
 
 ```bash
 [terraform@terraform terraform-aws]$ ssh -i /home/terraform/tf-bastion-key.pem ec2-user@<Bastion_Public_IP>
+
 [ec2-user@bastion ~]$ sudo yum update -y
+
 [ec2-user@bastion ~]$ sudo yum install mysql -y
 Installed:
   mariadb.x86_64 1:5.5.68-1.amzn2.0.1
