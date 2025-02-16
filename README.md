@@ -1,4 +1,10 @@
+# RDS 확인
+
+![rds1](https://github.com/user-attachments/assets/f441600e-2e9c-4ffa-b763-d51507b7dd34)
+![rds2](https://github.com/user-attachments/assets/57866c21-f8b2-49ac-a0cd-d8a4694f0c8c)
+
 # RDS Secrets Manager 확인
+
 ![rds-secret-manager](https://github.com/user-attachments/assets/8bb6eca0-2a89-4795-a2e6-fe6e50bee672)
 
 # Bastion Host 에서 RDS 접근 확인
