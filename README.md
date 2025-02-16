@@ -33,7 +33,7 @@ Address:        10.0.0.2#53
 <br>
 
 # Route53 Private Hosted Zone 사용 조건
-VPC 내에서 Private Hosted Zone을 사용하려면 DNS 해석(DNS Resolution) 및 DNS 호스트네임(DNS Hostnames) 설정 필요
+VPC 내에서 Private Hosted Zone을 사용하려면 DNS 해석(DNS Resolution) 및 DNS 호스트네임(DNS Hostnames) 설정 필요 <br>
 ⇒ VPC 설정에서 DNS 호스트 이름 활성화
 
 <br>
