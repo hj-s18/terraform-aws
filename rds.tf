@@ -41,7 +41,7 @@ resource "aws_security_group" "tf_rds_sg" {
 resource "aws_db_instance" "tf_rds" {
   allocated_storage           = 20                                             # (Required unless a snapshot_identifier or replicate_source_db is provided) The allocated storage in gibibytes. The amount of allocated storage.
   engine                      = "mysql"                                        # (Required unless a snapshot_identifier or replicate_source_db is provided) The database engine to use.
-  username                    = "foo"                                          # (Required unless a snapshot_identifier or replicate_source_db is provided) Username for the master DB user.
+  username                    = "admin"                                          # (Required unless a snapshot_identifier or replicate_source_db is provided) Username for the master DB user.
   engine_version              = "8.0"                                          # (Optional) The engine version to use.
   instance_class              = "db.t3.micro"                                  # (Required) The instance type of the RDS instance.
   db_name                     = "mydb"                                         # (Optional) The name of the database to create when the DB instance is created. 
