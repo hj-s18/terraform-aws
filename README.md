@@ -44,7 +44,7 @@ AWS VPC에서는 VPC의 CIDR 블록이 10.0.0.0/16 라면, 다음과 같음 <br>
 - VPC 기본 게이트웨이: 10.0.0.1
 - VPC 기본 DNS 서버: 10.0.0.2
 <br>
-이 DNS 서버를 통해 다음을 해석함
+이 DNS 서버를 통해 다음을 해석함 <br>
 - AWS 내부 서비스 도메인 (.amazonaws.com)
 - Private Hosted Zone에서 설정한 커스텀 도메인 (rds.tf.private.com)
 <br>
