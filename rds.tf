@@ -53,7 +53,8 @@ resource "aws_db_instance" "tf_rds" {
   db_subnet_group_name        = aws_db_subnet_group.tf_rds_subnet_group.name   # (Optional) Name of DB subnet group. DB instance will be created in the VPC associated with the DB subnet group. If unspecified, will be created in the default Subnet Group. 
   skip_final_snapshot         = true                                           # (Optional) Determines whether a final DB snapshot is created before the DB instance is deleted. If true is specified, no DBSnapshot is created. Default is false.
   storage_type                = "gp3"                                          # (Optional) One of "standard", "gp2", "gp3" (general purpose SSD that needs iops independently), "io1" or "io2". The default is "io1" if iops is specified, "gp2" if not.
-  
+  parameter_group_name        = "default.mysql8.0"                             # (Optional) Name of the DB parameter group to associate.
+
   tags = {
     Name                      = "tf_rds"
   }
