@@ -1,5 +1,5 @@
 # RDS Secrets Manager 확인
-
+![rds secret manager](https://github.com/user-attachments/assets/f928f4bd-7cf3-4c73-94eb-2be9a06987b4)
 
 # Bastion Host 에서 RDS 접근 확인
 
