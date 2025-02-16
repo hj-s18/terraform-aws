@@ -1,27 +1,41 @@
-# Bastion Host
+# Bastion Host 에서 RDS 접근 확인
 
-![image](https://github.com/user-attachments/assets/97bebd3e-d9f5-4edf-b5da-1fe299e28f25)
+```bash
+[terraform@ip-192-168-10-138 terraform-aws]$ ssh -i /home/terraform/tf-bastion-key.pem ec2-user@<Bastion_Public_IP>
+[ec2-user@ip-10-0-1-46 ~]$ sudo yum update -y
+[ec2-user@ip-10-0-1-46 ~]$ sudo yum install mysql -y
+Installed:
+  mariadb.x86_64 1:5.5.68-1.amzn2.0.1
 
-<br>
-<br>
-<br>
+Complete!
 
-## 1. AWS Key pair
-### AWS 키페어 생성
+[ec2-user@ip-10-0-1-46 ~]$ mysql -u admin -h <RDS endpoint> -p'<password>'
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 55
+Server version: 8.0.40 Source distribution
 
-<br>
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
-## 2. Bastion Host Security Group
-### Bastion Host의 보안 그룹 생성
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
+MySQL [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
 
-<br>
+MySQL [(none)]> use mydb;
+Database changed
+MySQL [mydb]> show tables;
+Empty set (0.00 sec)
 
-## 3. Bastion Host EC2 instance
-### Bastion Host로 사용할 EC2 인스턴스 생성
-
-![image](https://github.com/user-attachments/assets/06925f5c-86ee-4170-b31f-b44803702ac4)
-
-<br>
-<br>
-<br>
+MySQL [mydb]> exit
+Bye
+[ec2-user@ip-10-0-1-46 ~]$
+```
