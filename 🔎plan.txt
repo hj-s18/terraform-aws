@@ -512,3 +512,6 @@ Terraform will perform the following actions:
     }
 
 Plan: 25 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + bastion_public_ip = (known after apply)
