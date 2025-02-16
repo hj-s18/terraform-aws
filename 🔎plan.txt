@@ -3,6 +3,93 @@ Terraform used the selected providers to generate the following execution plan. 
 
 Terraform will perform the following actions:
 
+  # aws_db_instance.tf_rds will be created
+  + resource "aws_db_instance" "tf_rds" {
+      + address                               = (known after apply)
+      + allocated_storage                     = 20
+      + apply_immediately                     = false
+      + arn                                   = (known after apply)
+      + auto_minor_version_upgrade            = true
+      + availability_zone                     = (known after apply)
+      + backup_retention_period               = (known after apply)
+      + backup_target                         = (known after apply)
+      + backup_window                         = (known after apply)
+      + ca_cert_identifier                    = (known after apply)
+      + character_set_name                    = (known after apply)
+      + copy_tags_to_snapshot                 = false
+      + db_name                               = "mydb"
+      + db_subnet_group_name                  = "tf-rds-subnet-group"
+      + dedicated_log_volume                  = false
+      + delete_automated_backups              = true
+      + domain_fqdn                           = (known after apply)
+      + endpoint                              = (known after apply)
+      + engine                                = "mysql"
+      + engine_lifecycle_support              = (known after apply)
+      + engine_version                        = "8.0"
+      + engine_version_actual                 = (known after apply)
+      + hosted_zone_id                        = (known after apply)
+      + id                                    = (known after apply)
+      + identifier                            = (known after apply)
+      + identifier_prefix                     = (known after apply)
+      + instance_class                        = "db.t3.micro"
+      + iops                                  = (known after apply)
+      + kms_key_id                            = (known after apply)
+      + latest_restorable_time                = (known after apply)
+      + license_model                         = (known after apply)
+      + listener_endpoint                     = (known after apply)
+      + maintenance_window                    = (known after apply)
+      + manage_master_user_password           = true
+      + master_user_secret                    = (known after apply)
+      + master_user_secret_kms_key_id         = (known after apply)
+      + monitoring_interval                   = 0
+      + monitoring_role_arn                   = (known after apply)
+      + multi_az                              = true
+      + nchar_character_set_name              = (known after apply)
+      + network_type                          = (known after apply)
+      + option_group_name                     = (known after apply)
+      + parameter_group_name                  = (known after apply)
+      + performance_insights_enabled          = false
+      + performance_insights_kms_key_id       = (known after apply)
+      + performance_insights_retention_period = (known after apply)
+      + port                                  = (known after apply)
+      + publicly_accessible                   = false
+      + replica_mode                          = (known after apply)
+      + replicas                              = (known after apply)
+      + resource_id                           = (known after apply)
+      + skip_final_snapshot                   = true
+      + snapshot_identifier                   = (known after apply)
+      + status                                = (known after apply)
+      + storage_throughput                    = (known after apply)
+      + storage_type                          = "gp3"
+      + tags                                  = {
+          + "Name" = "vss_rds"
+        }
+      + tags_all                              = {
+          + "Name" = "vss_rds"
+        }
+      + timezone                              = (known after apply)
+      + username                              = "foo"
+      + vpc_security_group_ids                = (known after apply)
+    }
+
+  # aws_db_subnet_group.tf_rds_subnet_group will be created
+  + resource "aws_db_subnet_group" "tf_rds_subnet_group" {
+      + arn                     = (known after apply)
+      + description             = "Managed by Terraform"
+      + id                      = (known after apply)
+      + name                    = "tf-rds-subnet-group"
+      + name_prefix             = (known after apply)
+      + subnet_ids              = (known after apply)
+      + supported_network_types = (known after apply)
+      + tags                    = {
+          + "Name" = "tf_rds_subnet_group"
+        }
+      + tags_all                = {
+          + "Name" = "tf_rds_subnet_group"
+        }
+      + vpc_id                  = (known after apply)
+    }
+
   # aws_eip.tf_eip will be created
   + resource "aws_eip" "tf_eip" {
       + allocation_id        = (known after apply)
@@ -305,6 +392,52 @@ Terraform will perform the following actions:
       + vpc_id                 = (known after apply)
     }
 
+  # aws_security_group.tf_rds_sg will be created
+  + resource "aws_security_group" "tf_rds_sg" {
+      + arn                    = (known after apply)
+      + description            = "Security group for RDS"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + from_port        = 0
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+                # (1 unchanged attribute hidden)
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = []
+              + from_port        = 3306
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = (known after apply)
+              + self             = false
+              + to_port          = 3306
+                # (1 unchanged attribute hidden)
+            },
+        ]
+      + name                   = "tf-rds-sg"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Name" = "tf_rds_sg"
+        }
+      + tags_all               = {
+          + "Name" = "tf_rds_sg"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
   # aws_subnet.tf_pri_sub_1 will be created
   + resource "aws_subnet" "tf_pri_sub_1" {
       + arn                                            = (known after apply)
@@ -511,4 +644,4 @@ Terraform will perform the following actions:
       + rsa_bits                      = 2048
     }
 
-Plan: 25 to add, 0 to change, 0 to destroy.
+Plan: 28 to add, 0 to change, 0 to destroy.
