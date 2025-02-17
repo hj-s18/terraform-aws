@@ -100,7 +100,7 @@ resource "aws_security_group" "tf_eks_node_group_sg" {
     from_port       = 10250
     to_port         = 10250
     protocol        = "tcp"
-    description     = "Allow cluster to manage worker nodes"
+    description     = "Allow cluster to manage worker nodes"  # "Allow EKS control plane to manage nodes" ?
     security_groups = [aws_security_group.tf_eks_cluster_sg.id]
   }
 
