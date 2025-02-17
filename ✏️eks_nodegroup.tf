@@ -3,8 +3,17 @@ resource "aws_launch_template" "tf_eks_node_lt" {
   name_prefix   = "tf-eks-node-lt"
   image_id      = "ami-0a20b1b99b215fb27" # EKS 지원 AMI ID (Amazon Linux 2 AMI)
   instance_type = "t3.medium"
+
   network_interfaces {
     security_groups = [aws_security_group.tf_eks_node_group_sg.id] 
+  }
+
+  block_device_mappings {
+    device_name = "/dev/xvda"        # Amazon Linux 2 기본 루트 디바이스
+    ebs {
+      volume_size = 20               # disk_size 지정
+      volume_type = "gp3"            # 최신 EBS 타입
+    }
   }
 }
 
@@ -26,7 +35,6 @@ resource "aws_eks_node_group" "tf_eks_managed_node_group" {
     min_size     = 2
   }
 
-  disk_size      = 20                  # (Optional) Disk size in GiB for worker nodes. Defaults to 50 for Windows, 20 all other node groups. 
   capacity_type  = "ON_DEMAND"
 
   update_config {                      # (Optional) Configuration block with update settings.
