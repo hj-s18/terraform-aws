@@ -5,7 +5,9 @@ resource "aws_subnet" "tf_pri_sub_1" {
   availability_zone      = "ap-northeast-2a"
 
   tags = {
-    Name                 = "tf_pri_sub_1"
+    Name                                   = "tf_pri_sub_1"
+    "kubernetes.io/role/internal-elb"      = "1"
+    "kubernetes.io/cluster/tf-eks-cluster" = "shared"
   }
 }
 
@@ -15,7 +17,9 @@ resource "aws_subnet" "tf_pri_sub_2" {
   availability_zone      = "ap-northeast-2c"
 
   tags = {
-    Name                 = "tf_pri_sub_2"
+    Name                                   = "tf_pri_sub_2"
+    "kubernetes.io/role/internal-elb"      = "1"
+    "kubernetes.io/cluster/tf-eks-cluster" = "shared"
   }
 }
 
