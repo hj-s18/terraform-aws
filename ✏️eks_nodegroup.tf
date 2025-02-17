@@ -30,9 +30,9 @@ resource "aws_eks_node_group" "tf_eks_managed_node_group" {
   }
 
   scaling_config {                     # (Required) Configuration block with scaling settings. 
-    desired_size = 2
-    max_size     = 3
-    min_size     = 2
+    desired_size = 3
+    max_size     = 5
+    min_size     = 3                   # 가용성을 유지하기 위해 최소 3개 이상이 권장됨 ⇒ HA 보장
   }
 
   capacity_type  = "ON_DEMAND"
@@ -60,14 +60,14 @@ resource "aws_iam_role" "tf_eks_managed_node_group_iam_role" {
   name = "tf-eks-managed-node-role"
 
   assume_role_policy = jsonencode({
+    Version = "2012-10-17"
     Statement = [{
-      Action = "sts:AssumeRole"
       Effect = "Allow"
+      Action = "sts:AssumeRole"
       Principal = {
         Service = "ec2.amazonaws.com"
       }
     }]
-    Version = "2012-10-17"
   })
 }
 
