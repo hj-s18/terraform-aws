@@ -63,7 +63,7 @@ resource "aws_iam_role_policy_attachment" "tf_eks_managed_node_group_policy_Amaz
   role       = aws_iam_role.tf_eks_managed_node_group_iam_role.name
 }
 
-resource "aws_iam_role_policy_attachment" "etf_eks_managed_node_group_policy_AmazonEC2ContainerRegistryReadOnly" {
+resource "aws_iam_role_policy_attachment" "tf_eks_managed_node_group_policy_AmazonEC2ContainerRegistryReadOnly" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   role       = aws_iam_role.tf_eks_managed_node_group_iam_role.name
 }
