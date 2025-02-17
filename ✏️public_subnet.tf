@@ -20,6 +20,7 @@ resource "aws_subnet" "tf_pub_sub_2" {
   tags = {
     Name = "tf_pub_sub_2"
     "kubernetes.io/role/elb" = "1"             # If you want to deploy load balancers to a public subnet, the subnet must have the following tag
+    # "kubernetes.io/cluster/tf-eks-cluster" = "shared"  # EKS 클러스터가 퍼블릭 서브넷 사용하고싶다면 추가할 태그
   }
 }
 
