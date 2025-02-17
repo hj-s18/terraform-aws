@@ -70,13 +70,32 @@ resource "aws_security_group" "tf_eks_cluster_sg" {
   name        = "tf-eks-cluster-sg"
   description = "EKS Cluster Security Group"
   vpc_id      = aws_vpc.tf_vpc.id
-  
+
+  # bastion → cluster API
   ingress {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
     description = "Allow bastion to communicate with the cluster API"
     security_groups = [aws_security_group.tf_bastion_sg.id]
+  }
+
+  # worker nodes → cluster API
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    description = "Allow worker nodes to communicate with cluster API"
+    security_groups = [aws_security_group.tf_eks_node_group_sg.id]
+  }
+
+  # worker nodes → ?
+  ingress {
+    from_port   = 10250
+    to_port     = 10250
+    protocol    = "tcp"
+    description = "Allow cluster to manage worker nodes"
+    security_groups = [aws_security_group.tf_eks_node_group_sg.id]
   }
 
   egress {
