@@ -1,8 +1,8 @@
 # EKS Cluster
 resource "aws_eks_cluster" "tf_eks_cluster" {
-  name = "tf-eks-cluster"                             # (Required) Name of the cluster.
-  role_arn = aws_iam_role.eks_cluster_role.arn        # (Required) ARN of the IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf.
-  # version  = "1.31"                                   # (Optional) Desired Kubernetes master version.
+  name = "tf-eks-cluster"                               # (Required) Name of the cluster.
+  role_arn = aws_iam_role.tf_eks_cluster_iam_role.arn   # (Required) ARN of the IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf.
+  # version  = "1.31"                                     # (Optional) Desired Kubernetes master version.
 
   /* access_config {                                     # (Optional) Configuration block for the access config associated with your cluster
     authentication_mode = "API"                       # (Optional) The authentication mode for the cluster. Valid values are CONFIG_MAP, API or API_AND_CONFIG_MAP
@@ -37,7 +37,7 @@ resource "aws_eks_cluster" "tf_eks_cluster" {
   ]
   
   tags = {
-    Name = tf_eks_cluster
+    Name = "tf_eks_cluster"
   }
 }
 
