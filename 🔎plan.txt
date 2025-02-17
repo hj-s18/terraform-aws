@@ -159,15 +159,13 @@ Terraform will perform the following actions:
 
   # aws_eks_node_group.tf_eks_managed_node_group will be created
   + resource "aws_eks_node_group" "tf_eks_managed_node_group" {
-      + ami_type               = "AL2_x86_64"
+      + ami_type               = (known after apply)
       + arn                    = (known after apply)
       + capacity_type          = "ON_DEMAND"
       + cluster_name           = "tf-eks-cluster"
       + disk_size              = 20
       + id                     = (known after apply)
-      + instance_types         = [
-          + "t3.medium",
-        ]
+      + instance_types         = (known after apply)
       + node_group_name        = "tf-eks-managed-node-group"
       + node_group_name_prefix = (known after apply)
       + node_role_arn          = (known after apply)
@@ -182,6 +180,12 @@ Terraform will perform the following actions:
           + "Name" = "tf_eks_managed_node_group"
         }
       + version                = (known after apply)
+
+      + launch_template {
+          + id      = (known after apply)
+          + name    = (known after apply)
+          + version = "$Latest"
+        }
 
       + node_repair_config (known after apply)
 
@@ -392,6 +396,25 @@ Terraform will perform the following actions:
         }
     }
 
+  # aws_launch_template.tf_eks_node_lt will be created
+  + resource "aws_launch_template" "tf_eks_node_lt" {
+      + arn             = (known after apply)
+      + default_version = (known after apply)
+      + id              = (known after apply)
+      + image_id        = "ami-0a20b1b99b215fb27"
+      + instance_type   = "t3.medium"
+      + latest_version  = (known after apply)
+      + name            = (known after apply)
+      + name_prefix     = "tf-eks-node-lt"
+      + tags_all        = (known after apply)
+
+      + metadata_options (known after apply)
+
+      + network_interfaces {
+          + security_groups = (known after apply)
+        }
+    }
+
   # aws_nat_gateway.tf_nat will be created
   + resource "aws_nat_gateway" "tf_nat" {
       + allocation_id                      = (known after apply)
@@ -599,14 +622,38 @@ Terraform will perform the following actions:
               + cidr_blocks      = [
                   + "0.0.0.0/0",
                 ]
-              + from_port        = 0
+              + description      = "Allow DNS resolution"
+              + from_port        = 53
               + ipv6_cidr_blocks = []
               + prefix_list_ids  = []
-              + protocol         = "-1"
+              + protocol         = "udp"
               + security_groups  = []
               + self             = false
-              + to_port          = 0
-                # (1 unchanged attribute hidden)
+              + to_port          = 53
+            },
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = "Allow cluster to communicate with AWS services"
+              + from_port        = 443
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 443
+            },
+          + {
+              + cidr_blocks      = []
+              + description      = "Allow cluster to communicate with worker nodes"
+              + from_port        = 10250
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = true
+              + to_port          = 10250
             },
         ]
       + id                     = (known after apply)
@@ -621,6 +668,39 @@ Terraform will perform the following actions:
               + security_groups  = (known after apply)
               + self             = false
               + to_port          = 443
+            },
+          + {
+              + cidr_blocks      = []
+              + description      = "Allow worker nodes to communicate with the cluster"
+              + from_port        = 10250
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = true
+              + to_port          = 10250
+            },
+          + {
+              + cidr_blocks      = []
+              + description      = "Allow worker nodes to use DNS (TCP)"
+              + from_port        = 53
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = true
+              + to_port          = 53
+            },
+          + {
+              + cidr_blocks      = []
+              + description      = "Allow worker nodes to use DNS (UDP)"
+              + from_port        = 53
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "udp"
+              + security_groups  = []
+              + self             = true
+              + to_port          = 53
             },
         ]
       + name                   = "tf-eks-cluster-sg"
@@ -995,7 +1075,7 @@ Terraform will perform the following actions:
       + rsa_bits                      = 2048
     }
 
-Plan: 40 to add, 0 to change, 0 to destroy.
+Plan: 41 to add, 0 to change, 0 to destroy.
 
 Changes to Outputs:
   + bastion_public_ip = (known after apply)
