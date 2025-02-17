@@ -13,6 +13,8 @@ resource "aws_launch_template" "tf_eks_node_lt" {
     ebs {
       volume_size = 20               # disk_size 지정
       volume_type = "gp3"            # 최신 EBS 타입
+      iops = 3000                    # 기본값 : 3000
+      throughput = 125               # 기본값 : 125
     }
   }
 }
