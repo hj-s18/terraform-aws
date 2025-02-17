@@ -1,8 +1,8 @@
 # AWS eks_node_group Resource
 resource "aws_eks_node_group" "tf_eks_managed_node_group" {
-  cluster_name    = aws_eks_cluster.tf_eks_cluster.name        # (Required) Name of the EKS Cluster.
-  node_group_name = "tf-eks-managed-node-group"                # (Optional) Name of the EKS Node Group. If omitted, Terraform will assign a random, unique name. 
-  node_role_arn   = aws_iam_role.tf_eks_managed_node_role.arn  # (Required) Amazon Resource Name (ARN) of the IAM Role that provides permissions for the EKS Node Group.
+  cluster_name    = aws_eks_cluster.tf_eks_cluster.name                       # (Required) Name of the EKS Cluster.
+  node_group_name = "tf-eks-managed-node-group"                               # (Optional) Name of the EKS Node Group. If omitted, Terraform will assign a random, unique name. 
+  node_role_arn   = aws_iam_role.tf_eks_managed_node_group_iam_role.arn       # (Required) Amazon Resource Name (ARN) of the IAM Role that provides permissions for the EKS Node Group.
   subnet_ids      = [aws_subnet.tf_pri_sub_1.id, aws_subnet.tf_pri_sub_2.id]  # (Required) Identifiers of EC2 Subnets to associate with the EKS Node Group.
   security_groups = [aws_security_group.tf_eks_node_group_sg.id]
 
@@ -24,9 +24,9 @@ resource "aws_eks_node_group" "tf_eks_managed_node_group" {
   # Ensure that IAM Role permissions are created before and deleted after EKS Node Group handling.
   # Otherwise, EKS will not be able to properly delete EC2 Instances and Elastic Network Interfaces.
   depends_on = [
-    aws_iam_role_policy_attachment.example-AmazonEKSWorkerNodePolicy,
-    aws_iam_role_policy_attachment.example-AmazonEKS_CNI_Policy,
-    aws_iam_role_policy_attachment.example-AmazonEC2ContainerRegistryReadOnly,
+    aws_iam_role_policy_attachment.tf_eks_managed_node_group_policy_AmazonEKSWorkerNodePolicy,
+    aws_iam_role_policy_attachment.tf_eks_managed_node_group_policy_AmazonEKS_CNI_Policy,
+    aws_iam_role_policy_attachment.tf_eks_managed_node_group_policy_AmazonEC2ContainerRegistryReadOnly,
   ]
 
 tags = {
