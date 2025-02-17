@@ -163,7 +163,7 @@ Terraform will perform the following actions:
       + arn                    = (known after apply)
       + capacity_type          = "ON_DEMAND"
       + cluster_name           = "tf-eks-cluster"
-      + disk_size              = 20
+      + disk_size              = (known after apply)
       + id                     = (known after apply)
       + instance_types         = (known after apply)
       + node_group_name        = "tf-eks-managed-node-group"
@@ -408,6 +408,17 @@ Terraform will perform the following actions:
       + name_prefix     = "tf-eks-node-lt"
       + tags_all        = (known after apply)
 
+      + block_device_mappings {
+          + device_name = "/dev/xvda"
+
+          + ebs {
+              + iops        = (known after apply)
+              + throughput  = (known after apply)
+              + volume_size = 20
+              + volume_type = "gp3"
+            }
+        }
+
       + metadata_options (known after apply)
 
       + network_interfaces {
@@ -622,38 +633,14 @@ Terraform will perform the following actions:
               + cidr_blocks      = [
                   + "0.0.0.0/0",
                 ]
-              + description      = "Allow DNS resolution"
-              + from_port        = 53
+              + from_port        = 0
               + ipv6_cidr_blocks = []
               + prefix_list_ids  = []
-              + protocol         = "udp"
+              + protocol         = "-1"
               + security_groups  = []
               + self             = false
-              + to_port          = 53
-            },
-          + {
-              + cidr_blocks      = [
-                  + "0.0.0.0/0",
-                ]
-              + description      = "Allow cluster to communicate with AWS services"
-              + from_port        = 443
-              + ipv6_cidr_blocks = []
-              + prefix_list_ids  = []
-              + protocol         = "tcp"
-              + security_groups  = []
-              + self             = false
-              + to_port          = 443
-            },
-          + {
-              + cidr_blocks      = []
-              + description      = "Allow cluster to communicate with worker nodes"
-              + from_port        = 10250
-              + ipv6_cidr_blocks = []
-              + prefix_list_ids  = []
-              + protocol         = "tcp"
-              + security_groups  = []
-              + self             = true
-              + to_port          = 10250
+              + to_port          = 0
+                # (1 unchanged attribute hidden)
             },
         ]
       + id                     = (known after apply)
@@ -668,39 +655,6 @@ Terraform will perform the following actions:
               + security_groups  = (known after apply)
               + self             = false
               + to_port          = 443
-            },
-          + {
-              + cidr_blocks      = []
-              + description      = "Allow worker nodes to communicate with the cluster"
-              + from_port        = 10250
-              + ipv6_cidr_blocks = []
-              + prefix_list_ids  = []
-              + protocol         = "tcp"
-              + security_groups  = []
-              + self             = true
-              + to_port          = 10250
-            },
-          + {
-              + cidr_blocks      = []
-              + description      = "Allow worker nodes to use DNS (TCP)"
-              + from_port        = 53
-              + ipv6_cidr_blocks = []
-              + prefix_list_ids  = []
-              + protocol         = "tcp"
-              + security_groups  = []
-              + self             = true
-              + to_port          = 53
-            },
-          + {
-              + cidr_blocks      = []
-              + description      = "Allow worker nodes to use DNS (UDP)"
-              + from_port        = 53
-              + ipv6_cidr_blocks = []
-              + prefix_list_ids  = []
-              + protocol         = "udp"
-              + security_groups  = []
-              + self             = true
-              + to_port          = 53
             },
         ]
       + name                   = "tf-eks-cluster-sg"
