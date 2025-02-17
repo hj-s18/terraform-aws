@@ -4,7 +4,6 @@ resource "aws_eks_node_group" "tf_eks_managed_node_group" {
   node_group_name = "tf-eks-managed-node-group"                               # (Optional) Name of the EKS Node Group. If omitted, Terraform will assign a random, unique name. 
   node_role_arn   = aws_iam_role.tf_eks_managed_node_group_iam_role.arn       # (Required) Amazon Resource Name (ARN) of the IAM Role that provides permissions for the EKS Node Group.
   subnet_ids      = [aws_subnet.tf_pri_sub_1.id, aws_subnet.tf_pri_sub_2.id]  # (Required) Identifiers of EC2 Subnets to associate with the EKS Node Group.
-  security_groups = [aws_security_group.tf_eks_node_group_sg.id]
 
   scaling_config {                     # (Required) Configuration block with scaling settings. 
     desired_size = 2
