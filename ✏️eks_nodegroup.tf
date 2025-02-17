@@ -1,9 +1,24 @@
-# AWS eks_node_group Resource
+# Launch Template 정의
+resource "aws_launch_template" "tf_eks_node_lt" {
+  name_prefix   = "tf-eks-node-lt"
+  image_id      = "ami-0a20b1b99b215fb27" # EKS 지원 AMI ID (Amazon Linux 2 AMI)
+  instance_type = "t3.medium"
+  network_interfaces {
+    security_groups = [aws_security_group.tf_eks_node_group_sg.id] 
+  }
+}
+
+# AWS eks_node_group 생성
 resource "aws_eks_node_group" "tf_eks_managed_node_group" {
   cluster_name    = aws_eks_cluster.tf_eks_cluster.name                       # (Required) Name of the EKS Cluster.
   node_group_name = "tf-eks-managed-node-group"                               # (Optional) Name of the EKS Node Group. If omitted, Terraform will assign a random, unique name. 
   node_role_arn   = aws_iam_role.tf_eks_managed_node_group_iam_role.arn       # (Required) Amazon Resource Name (ARN) of the IAM Role that provides permissions for the EKS Node Group.
   subnet_ids      = [aws_subnet.tf_pri_sub_1.id, aws_subnet.tf_pri_sub_2.id]  # (Required) Identifiers of EC2 Subnets to associate with the EKS Node Group.
+
+  launch_template {
+    id      = aws_launch_template.tf_eks_node_lt.id
+    version = "$Latest"
+  }
 
   scaling_config {                     # (Required) Configuration block with scaling settings. 
     desired_size = 2
@@ -11,8 +26,6 @@ resource "aws_eks_node_group" "tf_eks_managed_node_group" {
     min_size     = 2
   }
 
-  instance_types = ["t3.medium"]       # (Optional) List of instance types associated with the EKS Node Group. Defaults to ["t3.medium"].
-  ami_type       = "AL2_x86_64"        # (Optional) Type of Amazon Machine Image (AMI) associated with the EKS Node Group. : Amazon Linux 2 AMI
   disk_size      = 20                  # (Optional) Disk size in GiB for worker nodes. Defaults to 50 for Windows, 20 all other node groups. 
   capacity_type  = "ON_DEMAND"
 
