@@ -4,24 +4,37 @@ resource "aws_launch_template" "tf_eks_node_lt" {
   image_id      = "ami-0fa05db9e3c145f63"  # EKS 지원 AMI ID (Amazon Linux 2 AMI)
   instance_type = "t3.medium"
 
-  network_interfaces {
-    security_groups = [aws_security_group.tf_eks_node_group_sg.id] 
-  }
+  vpc_security_groups_ids = [aws_security_group.tf_eks_node_group_sg.id] 
 
   block_device_mappings {
     device_name = "/dev/xvda"        # Amazon Linux 2 기본 루트 디바이스
     ebs {
       volume_size = 20               # disk_size 지정
       volume_type = "gp3"            # 최신 EBS 타입
-      iops = 3000                    # 기본값 : 3000
-      throughput = 125               # 기본값 : 125
+      iops = 3000                    # 기본값 : 3000 (gp3 기준)
+      throughput = 125               # 기본값 : 125 (gp3 기준)
     }
   }
 
-  tags = {
-    Name                 = "tf_eks_node_lt"
-    "eks:cluster-name"   = "tf-eks-cluster"
-    "eks:nodegroup-name" = "tf-eks-managed-node-group"
+  # 태그 적용
+  # 태그를 tags 블록으로 설정하면 Launch Template 자체에만 적용됨
+  # EC2 인스턴스 및 EBS 볼륨에도 적용되도록 tag_specifications 사용해야 함
+  tag_specifications {
+    resource_type = "instance"
+    tags = {
+      Name                 = "tf_eks_node_lt"
+      "eks:cluster-name"   = "tf-eks-cluster"
+      "eks:nodegroup-name" = "tf-eks-managed-node-group"
+    }
+  }
+
+  tag_specifications {
+    resource_type = "volume"
+    tags = {
+      Name                 = "tf_eks_node_lt"
+      "eks:cluster-name"   = "tf-eks-cluster"
+      "eks:nodegroup-name" = "tf-eks-managed-node-group"
+    }
   }
 }
 
