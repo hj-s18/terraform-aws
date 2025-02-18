@@ -167,6 +167,13 @@ resource "aws_security_group" "tf_eks_node_group_sg" {
     security_groups = [aws_security_group.tf_eks_cluster_sg.id]
   }
 
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   tags = {
     Name = "tf_eks_node_group_sg"
   }
