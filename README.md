@@ -85,5 +85,12 @@ resource "aws_eks_node_group" "tf_eks_managed_node_group" {
 
 ![image](https://github.com/user-attachments/assets/efc5657f-263e-47c3-9e65-9b32c85f6bc9)
 
+<br>
+<br>
+<br>
+
+# LB 타입 서비스의 External-IP 사용해서 웹페이지 접속 가능
+
+![image](https://github.com/user-attachments/assets/62f4565d-71fe-4e36-86f6-23bc3f1f6793)
 
 
