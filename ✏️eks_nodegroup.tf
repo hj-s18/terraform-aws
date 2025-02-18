@@ -1,7 +1,7 @@
 # Launch Template 정의
 resource "aws_launch_template" "tf_eks_node_lt" {
   name_prefix   = "tf-eks-node-lt"
-  image_id      = "ami-0a20b1b99b215fb27" # EKS 지원 AMI ID (Amazon Linux 2 AMI)
+  image_id      = "ami-0fa05db9e3c145f63"  # EKS 지원 AMI ID (Amazon Linux 2 AMI)
   instance_type = "t3.medium"
 
   network_interfaces {
