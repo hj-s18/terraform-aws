@@ -73,14 +73,14 @@ resource "aws_secretsmanager_secret" "tf_rds_secret" {
 
 # 오류 해결
 
-07-eks-1 은 terraform apply 했을 때 오류 안 났음 <br>
+`07-eks-1` 은 terraform apply 했을 때 오류 안 났음 <br>
 launch template 생성하여 노드그룹의 보안그룹 생성 후 오류남 <br>
 launch template 또는 보안그룹에 문제가 있을 것임 <br>
 
 <br>
 
 모듈로 EKS 생성한 다른 조 보안그룹 그대로 가져옴 <br>
-⇒ 07-eks-4 브랜치의 `private_subnet.tf`, `public_subnet.tf`
+⇒ `07-eks-4` 브랜치의 `✏️eks_cluster.tf`, `✏️eks_nodegroup.tf`
 
 <br>
 <br>
