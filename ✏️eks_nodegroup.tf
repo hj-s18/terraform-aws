@@ -40,17 +40,17 @@ resource "aws_launch_template" "tf_eks_node_lt" {
 
 # AWS eks_node_group 생성
 resource "aws_eks_node_group" "tf_eks_managed_node_group" {
-  cluster_name    = aws_eks_cluster.tf_eks_cluster.name                       # (Required) Name of the EKS Cluster.
-  node_group_name = "tf-eks-managed-node-group"                               # (Optional) Name of the EKS Node Group. If omitted, Terraform will assign a random, unique name. 
-  node_role_arn   = aws_iam_role.tf_eks_managed_node_group_iam_role.arn       # (Required) Amazon Resource Name (ARN) of the IAM Role that provides permissions for the EKS Node Group.
-  subnet_ids      = [aws_subnet.tf_pri_sub_1.id, aws_subnet.tf_pri_sub_2.id]  # (Required) Identifiers of EC2 Subnets to associate with the EKS Node Group.
+  cluster_name    = aws_eks_cluster.tf_eks_cluster.name                       # (Required)
+  node_group_name = "tf-eks-managed-node-group"                               # (Optional)
+  node_role_arn   = aws_iam_role.tf_eks_managed_node_group_iam_role.arn       # (Required)
+  subnet_ids      = [aws_subnet.tf_pri_sub_1.id, aws_subnet.tf_pri_sub_2.id]  # (Required)
 
   launch_template {
     id      = aws_launch_template.tf_eks_node_lt.id
     version = "$Latest"
   }
 
-  scaling_config {                     # (Required) Configuration block with scaling settings. 
+  scaling_config {                     # (Required)
     desired_size = 3
     max_size     = 5
     min_size     = 3                   # 가용성을 유지하기 위해 최소 3개 이상이 권장됨 ⇒ HA 보장
@@ -58,12 +58,10 @@ resource "aws_eks_node_group" "tf_eks_managed_node_group" {
 
   capacity_type  = "ON_DEMAND"
 
-  update_config {                      # (Optional) Configuration block with update settings.
+  update_config {                      # (Optional)
     max_unavailable = 1
   }
 
-  # Ensure that IAM Role permissions are created before and deleted after EKS Node Group handling.
-  # Otherwise, EKS will not be able to properly delete EC2 Instances and Elastic Network Interfaces.
   depends_on = [
     aws_iam_role_policy_attachment.tf_eks_managed_node_group_policy_AmazonEKSWorkerNodePolicy,
     aws_iam_role_policy_attachment.tf_eks_managed_node_group_policy_AmazonEKS_CNI_Policy,
