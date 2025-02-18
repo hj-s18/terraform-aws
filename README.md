@@ -80,7 +80,7 @@ launch template 또는 보안그룹에 문제가 있을 것임 <br>
 <br>
 
 모듈로 EKS 생성한 다른 조 보안그룹 그대로 가져옴 <br>
-⇒ `07-eks-4` 브랜치의 `✏️eks_cluster.tf`, `✏️eks_nodegroup.tf`
+⇒ 수정된 코드 : `07-eks-4` 브랜치의 `✏️eks_cluster.tf`, `✏️eks_nodegroup.tf`
 
 <br>
 <br>
