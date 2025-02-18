@@ -6,9 +6,9 @@
 
 # 서브넷에 태그 추가
 
-![image](https://github.com/user-attachments/assets/a171dcde-7eb6-46d6-9548-37ba05bb14a0)
+![image](https://github.com/user-attachments/assets/23677147-681d-4175-8924-a156c560fa0b)
 
-![image](https://github.com/user-attachments/assets/ff9993a6-cbd1-48fc-8523-75dfbafcc882)
+![image](https://github.com/user-attachments/assets/6ffeae18-a923-4661-ae14-0bea4d87aa43)
 
 
 <br>
