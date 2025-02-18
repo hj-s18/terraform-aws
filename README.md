@@ -1,1 +1,64 @@
-# EKS 노드그룹의 launch temaplate, 보안그룹 오류 수정
+# EKS 노드그룹의 launch temaplate 수정
+
+<br>
+<br>
+<br>
+
+# 전과 같은 terraform apply 오류 발생함
+
+```
+╷
+│ Error: waiting for EKS Node Group (tf-eks-cluster:tf-eks-managed-node-group) create: unexpected state 'CREATE_FAILED', wanted target 'ACTIVE'. last error: i-023e524808a69bee6, i-026dd6f8309c7c113, i-0f7a818546da46c1e: NodeCreationFailure: Instances failed to join the kubernetes cluster
+│
+│   with aws_eks_node_group.tf_eks_managed_node_group,
+│   on eks_nodegroup.tf line 23, in resource "aws_eks_node_group" "tf_eks_managed_node_group":
+│   23: resource "aws_eks_node_group" "tf_eks_managed_node_group" {
+│
+╵
+```
+
+<br>
+<br>
+<br>
+
+# 문제 원인 예측
+
+예상 문제 원인 1 : launch template 생성 terraform 코드 오류 <br>
+예상 문제 원인 2 : 노드그룹 생성 terraform 코드 오류
+
+<br>
+<br>
+<br>
+
+# 콘솔에 들어가서 문제 원인 파악
+
+### launch template
+![launch template](https://github.com/user-attachments/assets/c9257c16-7be9-4f57-ae30-c49b856c7b8e)
+
+terraform으로 launch template 하나만 만들었는데 두 개 생김
+
+#### eks-a0ca8c6e-198f-84d1-d713-eff82d3ec69e
+
+![lt 1](https://github.com/user-attachments/assets/e86f08c9-ea24-4f99-8726-c82bfb505251)
+
+![image](https://github.com/user-attachments/assets/42af89e1-205c-47e1-a760-8495e4ae01e4)
+
+![image](https://github.com/user-attachments/assets/d5e4a561-01bb-47a6-b83d-11522bfa48eb)
+
+![image](https://github.com/user-attachments/assets/a0e0b2eb-b2de-4932-ab0c-f2cbd2f1db44)
+
+![image](https://github.com/user-attachments/assets/91e1d611-21b8-4f13-94ca-57fa6915d24c)
+
+#### tf-eks-node-lt20250218113208559000000009
+
+다른점
+1. 리소스 태그 없음
+2. 
+
+### tf-eks-cluster 
+![image](https://github.com/user-attachments/assets/fc7a73b3-d981-45f0-b7a3-b56e3a8929af)
+
+![image](https://github.com/user-attachments/assets/eb79f9d7-0df4-4411-a0b6-bd8f2dd3a1f6)
+
+tf-eks-managed-node-group : terraform 코드로 생성한 노드 그룹 ⇒ 생성 실패 <br>
+문제가 노드 그룹 생성 코드에 있다면, 
