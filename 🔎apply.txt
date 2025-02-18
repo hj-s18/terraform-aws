@@ -36,12 +36,13 @@ aws_nat_gateway.tf_nat: Creation complete after 1m44s [id=nat-XXXX]
 aws_route.tf_pri_route_nat: Creation complete after 0s [id=r-rtb-XXXX]
 aws_eks_cluster.tf_eks_cluster: Creation complete after 8m11s [id=tf-eks-cluster]
 aws_db_instance.tf_rds: Creation complete after 11m42s [id=db-XXXX]
-aws_route53_record.tf_rds_endpoint: Creation complete after 28s [id=XXXX]_rds.tf.private.com_CNAME]
-╷
-│ Error: creating EKS Node Group (tf-eks-cluster:tf-eks-managed-node-group): operation error EKS: CreateNodegroup, https response error StatusCode: 400, RequestID: be40fb27-9af9-4e8c-9b5d-240d35d7cdd0, InvalidParameterException: ec2SshKey in remote-access can't be empty
-│
-│   with aws_eks_node_group.tf_eks_managed_node_group,
-│   on ✏️eks_nodegroup.tf line 25, in resource "aws_eks_node_group" "tf_eks_managed_node_group":
-│   25: resource "aws_eks_node_group" "tf_eks_managed_node_group" {
-│
-╵
+aws_route53_record.tf_rds_endpoint: Creation complete after 28s [id=XXXX_rds.tf.private.com_CNAME]
+aws_eks_node_group.tf_eks_managed_node_group: Creation complete after 1m57s [id=tf-eks-cluster:tf-eks-managed-node-group]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+bastion_public_ip = "XXX.XXX.XXX.XXX"
+rds_endpoint = "rds.tf.private.com"
+
