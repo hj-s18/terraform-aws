@@ -1,6 +1,12 @@
 # EKS 클러스터, 노드그룹 생성
 
-노드그룹의 보안그룹을 추가하기 위해 launch template 이용하여 노드 그룹 생성
+<br>
+
+# 노드그룹 launch template 이미지 EKS 최적회된 이미지로 변경
+```
+[ec2-user@ip-192-168-10-138 ~]$ aws ssm get-parameter --name /aws/service/eks/optimized-ami/1.31/amazon-linux-2/recommended/image_id --region ap-northeast-2 --query "Parameter.Value" --output text
+ami-0fa05db9e3c145f63
+```
 
 <br>
 
