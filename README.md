@@ -91,6 +91,18 @@ terraform 코드로 생성한 노드 그룹 : `tf-eks-managed-node-group` ⇒ �
 
 ![lt-consol](https://github.com/user-attachments/assets/207bf494-09b0-41fd-bfda-8bf68ea40749)
 
+<br>
+<br>
+<br>
+
+### [참고] 오토스케일링 그룹에 만들어지는 태그들
+
+![오토스케일링그룹](https://github.com/user-attachments/assets/29089a2e-582f-4ce8-bfb7-06eedb880e4e)
+
+<br>
+<br>
+<br>
+
 ### 결론
 
 위 결과를 살펴보면 다음을 알 수 있음 <br>
@@ -101,7 +113,7 @@ terraform 코드로 생성한 노드 그룹 : `tf-eks-managed-node-group` ⇒ �
 1. 태그에 "eks:cluster-name" = "tf-eks-cluster", "eks:nodegroup-name" = "<노드그룹 이름>" 추가해서 시작 템플릿 만들기
 2. 시작 템플릿 없이 테라폼 코드 생성
 
-#### 해보기 <br>
+해보기 <br>
 1 : 07-eks-6 <br>
 2 : 07-eks-5 
 
