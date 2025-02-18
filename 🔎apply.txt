@@ -1,4 +1,3 @@
-aws_secretsmanager_secret.tf_rds_secret: Creation complete after 0s [id=arn:aws:secretsmanager:ap-northeast-2:<계정ID>:secret:aws/rds/instance/tf_rds_test-kgtzmn]
 tls_private_key.tf_bastion_key: Creation complete after 0s [id=XXXX]
 local_file.tf_bastion_private_key: Creation complete after 0s [id=XXXX]
 aws_key_pair.tf_bastion_key: Creation complete after 1s [id=tf-bastion-key]
