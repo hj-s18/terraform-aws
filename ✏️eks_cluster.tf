@@ -71,8 +71,8 @@ resource "aws_security_group" "tf_eks_cluster_sg" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    description = "Allow worker nodes to communicate with cluster API"
-    security_groups = [aws_security_group.tf_eks_node_group_sg.id]
+    description = "Node groups to cluster API"
+    cidr_blocks = ["10.0.3.0/24", "10.0.4.0/24"]
   }
 
   egress {
