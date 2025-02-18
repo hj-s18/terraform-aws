@@ -47,13 +47,16 @@ terraform으로 launch template 하나만 만들었는데 두 개 생김
 
 ![image](https://github.com/user-attachments/assets/a0e0b2eb-b2de-4932-ab0c-f2cbd2f1db44)
 
+![image](https://github.com/user-attachments/assets/48564d61-9c36-4ad5-a3b2-c87b9c575517)
+
 ![image](https://github.com/user-attachments/assets/91e1d611-21b8-4f13-94ca-57fa6915d24c)
 
 #### tf-eks-node-lt20250218113208559000000009
 
 다른점
 1. 리소스 태그 없음
-2. 
+2. ㄴ
+3. 템플릿 태그 없음
 
 ### tf-eks-cluster 
 ![image](https://github.com/user-attachments/assets/fc7a73b3-d981-45f0-b7a3-b56e3a8929af)
