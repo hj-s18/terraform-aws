@@ -50,9 +50,9 @@ resource "aws_db_instance" "tf_rds" {
   instance_class              = "db.t3.micro"
   db_name                     = "mydb"
   manage_master_user_password = true   # 이것만 있어도 Secrets Manager 생성됨 (이름이 랜덤 UUID가 포함된 패턴으로 생성됨 : rds!db-<랜덤한_UUID>)
-  master_user_secret {
-    secret_arn = aws_secretsmanager_secret.tf_rds_secret.arn   # 생성한 Secret Manager 사용하여 이름 지정해주기
-  }
+  # master_user_secret {
+  #   secret_arn = aws_secretsmanager_secret.tf_rds_secret.arn   # 생성한 Secret Manager 사용하여 이름 지정해주기
+  # }
   multi_az                    = true
   vpc_security_group_ids      = [aws_security_group.tf_rds_sg.id]
   db_subnet_group_name        = aws_db_subnet_group.tf_rds_subnet_group.name
