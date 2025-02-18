@@ -96,14 +96,6 @@ resource "aws_security_group" "tf_eks_node_group_sg" {
   vpc_id      = aws_vpc.tf_vpc.id
 
   ingress {
-    from_port       = 4443
-    to_port         = 4443
-    protocol        = "tcp"
-    description     = "Cluster API to node 4443/tcp webhook"
-    security_groups = [aws_security_group.tf_eks_cluster_sg.id]
-  }
-
-  ingress {
     from_port       = 53
     to_port         = 53
     protocol        = "udp"
@@ -128,27 +120,11 @@ resource "aws_security_group" "tf_eks_node_group_sg" {
   }
 
   ingress {
-    from_port       = 6443
-    to_port         = 6443
-    protocol        = "tcp"
-    description     = "Cluster API to node 6443/tcp webhook"
-    security_groups = [aws_security_group.tf_eks_cluster_sg.id]
-  }
-
-  ingress {
     from_port       = 1025
     to_port         = 65535
     protocol        = "tcp"
     description     = "Node to node ingress on ephemeral ports"
     self            = true
-  }
-
-  ingress {
-    from_port       = 9443
-    to_port         = 9443
-    protocol        = "tcp"
-    description     = "Cluster API to node 9443/tcp webhook"
-    security_groups = [aws_security_group.tf_eks_cluster_sg.id]
   }
 
   ingress {
@@ -160,10 +136,34 @@ resource "aws_security_group" "tf_eks_node_group_sg" {
   }
 
   ingress {
+    from_port       = 4443
+    to_port         = 4443
+    protocol        = "tcp"
+    description     = "Cluster API to node 4443/tcp webhook"
+    security_groups = [aws_security_group.tf_eks_cluster_sg.id]
+  }
+
+  ingress {
+    from_port       = 6443
+    to_port         = 6443
+    protocol        = "tcp"
+    description     = "Cluster API to node 6443/tcp webhook"
+    security_groups = [aws_security_group.tf_eks_cluster_sg.id]
+  }
+
+  ingress {
     from_port       = 8443
     to_port         = 8443
     protocol        = "tcp"
     description     = "Cluster API to node 8443/tcp webhook"
+    security_groups = [aws_security_group.tf_eks_cluster_sg.id]
+  }
+
+  ingress {
+    from_port       = 9443
+    to_port         = 9443
+    protocol        = "tcp"
+    description     = "Cluster API to node 9443/tcp webhook"
     security_groups = [aws_security_group.tf_eks_cluster_sg.id]
   }
 
