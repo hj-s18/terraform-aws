@@ -47,7 +47,7 @@ terraform으로 launch template 하나만 만들었는데 두 개 생김
 
 ![image](https://github.com/user-attachments/assets/a0e0b2eb-b2de-4932-ab0c-f2cbd2f1db44)
 
-![lt2](https://github.com/user-attachments/assets/a7352bad-6c61-45e7-b9d0-d90a2f180e3f)
+![lt2](https://github.com/user-attachments/assets/d13fccc6-1ec8-4214-a3da-e0bafa56c601)
 
 ![image](https://github.com/user-attachments/assets/91e1d611-21b8-4f13-94ca-57fa6915d24c)
 
