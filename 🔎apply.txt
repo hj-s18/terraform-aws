@@ -1,1 +1,47 @@
-
+tls_private_key.tf_bastion_key: Creation complete after 1s [id=XXXX]
+local_file.tf_bastion_private_key: Creation complete after 0s [id=XXXX]
+aws_key_pair.tf_bastion_key: Creation complete after 0s [id=tf-bastion-key]
+aws_eip.tf_eip: Creation complete after 1s [id=eipalloc-XXXX]
+aws_iam_role.tf_eks_cluster_iam_role: Creation complete after 2s [id=tf-eks-cluster-iam-role]
+aws_iam_role.tf_eks_managed_node_group_iam_role: Creation complete after 2s [id=tf-eks-managed-node-role]
+aws_iam_role_policy_attachment.tf_eks_cluster_policy_AmazonEKSClusterPolicy: Creation complete after 1s [id=tf-eks-cluster-iam-role-XXXX]
+aws_iam_role_policy_attachment.tf_eks_managed_node_group_policy_AmazonEKS_CNI_Policy: Creation complete after 1s [id=tf-eks-managed-node-role-XXXX]
+aws_iam_role_policy_attachment.tf_eks_managed_node_group_policy_AmazonEC2ContainerRegistryReadOnly: Creation complete after 1s [id=tf-eks-managed-node-role-XXXX]
+aws_iam_role_policy_attachment.tf_eks_managed_node_group_policy_AmazonEKSWorkerNodePolicy: Creation complete after 1s [id=tf-eks-managed-node-role-XXXX]
+aws_vpc.tf_vpc: Creation complete after 12s [id=vpc-XXXX]
+aws_internet_gateway.tf_igw: Creation complete after 0s [id=igw-XXXX]
+aws_subnet.tf_pri_sub_2: Creation complete after 0s [id=subnet-XXXX]
+aws_subnet.tf_rds_sub_2: Creation complete after 0s [id=subnet-XXXX]
+aws_route_table.tf_pub_rtb: Creation complete after 0s [id=rtb-XXXX]
+aws_route_table.tf_pri_rtb: Creation complete after 0s [id=rtb-XXXX]
+aws_route_table_association.tf_rds_sub_2_association: Creation complete after 1s [id=rtbassoc-XXXX]
+aws_route_table_association.tf_pri_sub_2_association: Creation complete after 1s [id=rtbassoc-XXXX]
+aws_route.tf_pub_route_igw: Creation complete after 1s [id=r-rtb-XXXX]
+aws_security_group.tf_bastion_sg: Creation complete after 1s [id=sg-XXXX]
+aws_subnet.tf_pri_sub_1: Creation complete after 2s [id=subnet-XXXX]
+aws_route_table_association.tf_pri_sub_1_association: Creation complete after 0s [id=rtbassoc-XXXX]
+aws_subnet.tf_rds_sub_1: Creation complete after 2s [id=subnet-XXXX]
+aws_route_table_association.tf_rds_sub_1_association: Creation complete after 1s [id=rtbassoc-XXXX]
+aws_security_group.tf_rds_sg: Creation complete after 2s [id=sg-XXXX]
+aws_security_group.tf_eks_cluster_sg: Creation complete after 2s [id=sg-XXXX]
+aws_db_subnet_group.tf_rds_subnet_group: Creation complete after 1s [id=tf-rds-subnet-group]
+aws_security_group.tf_eks_node_group_sg: Creation complete after 1s [id=sg-XXXX]
+aws_subnet.tf_pub_sub_1: Creation complete after 11s [id=subnet-XXXX]
+aws_route_table_association.tf_pub_sub_1_association: Creation complete after 0s [id=rtbassoc-XXXX]
+aws_subnet.tf_pub_sub_2: Creation complete after 11s [id=subnet-XXXX]
+aws_route_table_association.tf_pub_sub_2_association: Creation complete after 0s [id=rtbassoc-XXXX]
+aws_instance.tf_bastion: Creation complete after 12s [id=i-XXXX]
+aws_route53_zone.tf_route53_private: Creation complete after 59s [id=XXXX]
+aws_nat_gateway.tf_nat: Creation complete after 1m44s [id=nat-XXXX]
+aws_route.tf_pri_route_nat: Creation complete after 0s [id=r-rtb-XXXX]
+aws_eks_cluster.tf_eks_cluster: Creation complete after 8m11s [id=tf-eks-cluster]
+aws_db_instance.tf_rds: Creation complete after 11m42s [id=db-XXXX]
+aws_route53_record.tf_rds_endpoint: Creation complete after 28s [id=XXXX]_rds.tf.private.com_CNAME]
+╷
+│ Error: creating EKS Node Group (tf-eks-cluster:tf-eks-managed-node-group): operation error EKS: CreateNodegroup, https response error StatusCode: 400, RequestID: be40fb27-9af9-4e8c-9b5d-240d35d7cdd0, InvalidParameterException: ec2SshKey in remote-access can't be empty
+│
+│   with aws_eks_node_group.tf_eks_managed_node_group,
+│   on ✏️eks_nodegroup.tf line 25, in resource "aws_eks_node_group" "tf_eks_managed_node_group":
+│   25: resource "aws_eks_node_group" "tf_eks_managed_node_group" {
+│
+╵
