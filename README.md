@@ -2,7 +2,7 @@
 
 <br>
 
-# 노드그룹 launch template 이미지 EKS 최적회된 이미지로 변경
+# 노드그룹 launch template 이미지를 EKS 최적화된 이미지로 변경
 ```
 [ec2-user@ip-192-168-10-138 ~]$ aws ssm get-parameter --name /aws/service/eks/optimized-ami/1.31/amazon-linux-2/recommended/image_id --region ap-northeast-2 --query "Parameter.Value" --output text
 ami-0fa05db9e3c145f63
@@ -40,6 +40,11 @@ ami-0fa05db9e3c145f63
 <br>
 
 # 오류 해결
+
+07-단-1 은 terraform apply 했을 때 오류 안 났음 <br>
+launch template 생성하여 노드그룹의 보안그룹 생성 후 오류남 <br>
+launch template 또는 보안그룹에 문제가 있을 것임 <br>
+
 
 # 참고 : EKS 클러스터 생성하면 기본적으로 만들어지는 보안그룹
 
