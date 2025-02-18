@@ -47,15 +47,17 @@ terraform으로 launch template 하나만 만들었는데 두 개 생김
 
 ![image](https://github.com/user-attachments/assets/a0e0b2eb-b2de-4932-ab0c-f2cbd2f1db44)
 
-![image](https://github.com/user-attachments/assets/48564d61-9c36-4ad5-a3b2-c87b9c575517)
+![lt2](https://github.com/user-attachments/assets/a7352bad-6c61-45e7-b9d0-d90a2f180e3f)
 
 ![image](https://github.com/user-attachments/assets/91e1d611-21b8-4f13-94ca-57fa6915d24c)
 
 #### tf-eks-node-lt20250218113208559000000009
 
+
+
 다른점
 1. 리소스 태그 없음
-2. ㄴ
+2. 고급 세부 정보에 IAM 인스턴스 프로파일 없음, 메타데이터에서 태그 허용부분도 아무것도 없음
 3. 템플릿 태그 없음
 
 ### tf-eks-cluster 
