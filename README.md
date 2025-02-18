@@ -55,3 +55,35 @@ resource "aws_eks_node_group" "tf_eks_managed_node_group" {
 }
 ```
 
+<br>
+<br>
+<br>
+
+# ClusterIP
+
+<br>
+<br>
+<br>
+
+# NodePort
+
+<br>
+<br>
+<br>
+
+# loadbalancer
+
+### 로드밸런서 타입 service 생성하면 AWS에서 생성하는 lb
+
+![nlb1](https://github.com/user-attachments/assets/1abdf2c2-9674-43ca-a36e-c830b27ef066)
+
+![image](https://github.com/user-attachments/assets/9d819d60-2124-42f2-b9da-29b1db7b4fcd)
+
+![image](https://github.com/user-attachments/assets/f4d8a0a0-4e53-4d35-a8cb-23809070a6bc)
+
+![image](https://github.com/user-attachments/assets/ed967157-6035-4e2c-8bbb-7b10ef5a8b63)
+
+![image](https://github.com/user-attachments/assets/efc5657f-263e-47c3-9e65-9b32c85f6bc9)
+
+
+
