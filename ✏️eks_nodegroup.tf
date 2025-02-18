@@ -95,7 +95,7 @@ resource "aws_security_group" "tf_eks_node_group_sg" {
   description = "EKS Node Group Security Group"
   vpc_id      = aws_vpc.tf_vpc.id
 
-  # EKS 클러스터 → 노드 (Kubelet 관리)
+  # EKS 클러스터 → 노드 (Kubelet API 관리)
   ingress {
     from_port       = 10250
     to_port         = 10250
@@ -104,7 +104,7 @@ resource "aws_security_group" "tf_eks_node_group_sg" {
     security_groups = [aws_security_group.tf_eks_cluster_sg.id]
   }
 
-  # EKS 클러스터 → 노드 (Webhook, API 통신)
+  # EKS 클러스터 → 노드 (Webhook, API 통신 : API Server)
   ingress {
     from_port       = 443
     to_port         = 443
