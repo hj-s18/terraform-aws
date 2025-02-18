@@ -28,7 +28,6 @@ ami-0fa05db9e3c145f63
 
 ![image](https://github.com/user-attachments/assets/f766a7b4-966f-439d-91f5-921df38e7063)
 
-
 <br>
 
 # 오류 해결방안 찾기
@@ -37,8 +36,20 @@ ami-0fa05db9e3c145f63
 
 [Amazon EKS 클러스터 및 노드 관련 문제 해결](https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/troubleshooting.html) <br>
 [클러스터 API 서버 엔드포인트에 대한 네트워크 액세스 제어](https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/cluster-endpoint.html#cluster-endpoint-private) <br>
-[클러스터에 대한 Amazon EKS 보안 그룹 요구 사항 보기](https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/sec-group-reqs.html) <br>
 
 <br>
 
 # 오류 해결
+
+# 참고 : EKS 클러스터 생성하면 기본적으로 만들어지는 보안그룹
+
+[클러스터에 대한 Amazon EKS 보안 그룹 요구 사항 보기](https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/sec-group-reqs.html) <br>
+
+### 인바운드 규칙 : 자기 자신
+![image](https://github.com/user-attachments/assets/503e1524-6133-41ec-9e63-0b00064c2092)
+
+### 아웃바운드 규칙 : 전체
+![image](https://github.com/user-attachments/assets/c21c7bda-507a-4e29-8440-bb3ca38dcb4c)
+
+### 태그
+![image](https://github.com/user-attachments/assets/c9ac0535-fb84-4c7a-b9e5-0a764731ae09)
