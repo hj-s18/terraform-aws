@@ -13,8 +13,8 @@ spec:
         app: flask
     spec:
       containers:
-      - name: flask-container
-        image: my-dockerhub-user/my-flask-app:latest
+      - name: test-container
+        image: 707677861059.dkr.ecr.ap-northeast-2.amazonaws.com/test-ecr-namespace/test-ecr:latest
         ports:
         - containerPort: 5000
         envFrom:
