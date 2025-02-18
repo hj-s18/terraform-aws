@@ -26,7 +26,7 @@ aws eks --region ap-northeast-2 update-kubeconfig --name tf-eks-cluster
 
 <br>
 
-# .aws/config & .aws/credentials
+# aws configure ⇒ .aws/config & .aws/credentials
 ```
 [ec2-user@ip-10-0-1-100 ~]$ cat .aws/config
 [default]
@@ -41,7 +41,7 @@ aws_secret_access_key = XXXX
 
 <br>
 
-# .kube/config
+# aws eks --region ap-northeast-2 update-kubeconfig --name tf-eks-cluster ⇒ .kube/config
 ```
 [ec2-user@ip-10-0-1-100 ~]$ cat .kube/config
 apiVersion: v1
