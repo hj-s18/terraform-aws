@@ -35,9 +35,10 @@ ami-0fa05db9e3c145f63
 
 ![image](https://github.com/user-attachments/assets/1a2b31bb-490d-4165-83e8-45378fc1f233)
 
-[Amazon EKS 클러스터 및 노드 관련 문제 해결](https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/troubleshooting.html)
-[클러스터 API 서버 엔드포인트에 대한 네트워크 액세스 제어](https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/cluster-endpoint.html#cluster-endpoint-private)
-[클러스터에 대한 Amazon EKS 보안 그룹 요구 사항 보기](https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/sec-group-reqs.html)
+[Amazon EKS 클러스터 및 노드 관련 문제 해결](https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/troubleshooting.html) <br>
+[클러스터 API 서버 엔드포인트에 대한 네트워크 액세스 제어](https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/cluster-endpoint.html#cluster-endpoint-private) <br>
+[클러스터에 대한 Amazon EKS 보안 그룹 요구 사항 보기](https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/sec-group-reqs.html) <br>
 
+<br>
 
 # 오류 해결
