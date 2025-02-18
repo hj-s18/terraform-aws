@@ -30,9 +30,7 @@
 <br>
 <br>
 
-# 콘솔에 들어가서 문제 원인 파악
-
-### launch template
+# 콘솔에 들어가서 문제 원인 파악 1 : launch template
 
 terraform으로 launch template 하나만 만들었는데 두 개 생김
 
@@ -60,7 +58,7 @@ terraform으로 launch template 하나만 만들었는데 두 개 생김
 <br>
 <br>
 
-#### 두 launch template의 다른점
+### 두 launch template의 다른점
 
 1. 리소스 태그 없음
 2. 고급 세부 정보에 IAM 인스턴스 프로파일 없음, 메타데이터에서 태그 허용부분도 아무것도 없음
@@ -70,7 +68,7 @@ terraform으로 launch template 하나만 만들었는데 두 개 생김
 <br>
 <br>
 
-### tf-eks-cluster 
+# 콘솔에 들어가서 문제 원인 파악 2 :  tf-eks-cluster 
 
 terraform 코드로 생성한 노드 그룹 : `tf-eks-managed-node-group` ⇒ 생성 실패 <br>
 문제가 노드 그룹 생성 코드에 있다면, 같은 launch template(tf-eks-node-ltXXXX)으로 만들었을 때 노드그룹이 문제없이 생겨야 함 <br>
@@ -88,7 +86,9 @@ terraform 코드로 생성한 노드 그룹 : `tf-eks-managed-node-group` ⇒ �
 
 ### [참고] 시작 템플릿 없이 노드그룹 생성해도 시작템플릿 하나 생성됨
 단, 리소스 태그는 없음 <br>
-고급 세부 정보에 IAM 인스턴스 프로파일, 메타데이터에서 태그 허용부분은 있음
+고급 세부 정보에 IAM 인스턴스 프로파일, 메타데이터에서 태그 허용부분은 있음 <br>
+추가 : 고급 세부정보에 사용자 데이터가 있음
 
 ![lt-consol](https://github.com/user-attachments/assets/207bf494-09b0-41fd-bfda-8bf68ea40749)
+
 
