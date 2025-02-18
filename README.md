@@ -45,6 +45,12 @@ ami-0fa05db9e3c145f63
 launch template 생성하여 노드그룹의 보안그룹 생성 후 오류남 <br>
 launch template 또는 보안그룹에 문제가 있을 것임 <br>
 
+<br>
+
+모듈로 EKS 생성한 다른 조 보안그룹 그대로 가져옴 ⇒ 07-eks-4 `private_subnet.tf`, `public_subnet.tf`
+
+<br>
+
 
 # 참고 : EKS 클러스터 생성하면 기본적으로 만들어지는 보안그룹
 
