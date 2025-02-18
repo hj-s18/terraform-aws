@@ -186,6 +186,7 @@ Terraform will perform the following actions:
       + node_repair_config (known after apply)
 
       + remote_access {
+          + ec2_ssh_key               = "tf-bastion-key"
           + source_security_group_ids = (known after apply)
         }
 
