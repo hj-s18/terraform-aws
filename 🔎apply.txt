@@ -38,7 +38,7 @@ aws_nat_gateway.tf_nat: Creation complete after 1m34s [id=nat-XXXX]
 aws_route.tf_pri_route_nat: Creation complete after 0s [id=r-rtb-XXXX]
 aws_eks_cluster.tf_eks_cluster: Creation complete after 8m2s [id=tf-eks-cluster]
 aws_db_instance.tf_rds: Creation complete after 10m52s [id=db-XXXX]
-aws_route53_record.tf_rds_endpoint: Creation complete after 22s [id=XXXX]_rds.tf.private.com_CNAME]
+aws_route53_record.tf_rds_endpoint: Creation complete after 22s [id=XXXX_rds.tf.private.com_CNAME]
 aws_eks_node_group.tf_eks_managed_node_group: Still creating... [24m30s elapsed]
 ╷
 │ Error: waiting for EKS Node Group (tf-eks-cluster:tf-eks-managed-node-group) create: unexpected state 'CREATE_FAILED', wanted target 'ACTIVE'. last error: i-023e524808a69bee6, i-026dd6f8309c7c113, i-0f7a818546da46c1e: NodeCreationFailure: Instances failed to join the kubernetes cluster
