@@ -17,6 +17,12 @@ resource "aws_launch_template" "tf_eks_node_lt" {
       throughput = 125               # 기본값 : 125
     }
   }
+
+  tags = {
+    Name                 = "tf_eks_node_lt"
+    "eks:cluster-name"   = "tf-eks-cluster"
+    "eks:nodegroup-name" = "tf-eks-managed-node-group"
+  }
 }
 
 # AWS eks_node_group 생성
