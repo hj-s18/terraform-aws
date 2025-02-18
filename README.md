@@ -33,9 +33,14 @@
 # 콘솔에 들어가서 문제 원인 파악
 
 ### launch template
-![launch template](https://github.com/user-attachments/assets/c9257c16-7be9-4f57-ae30-c49b856c7b8e)
 
 terraform으로 launch template 하나만 만들었는데 두 개 생김
+
+![launch template](https://github.com/user-attachments/assets/c9257c16-7be9-4f57-ae30-c49b856c7b8e)
+
+<br>
+<br>
+<br>
 
 #### 안 만들었는데 생긴 launch template : eks-a0ca8c6e-198f-84d1-d713-eff82d3ec69e
 
@@ -52,6 +57,8 @@ terraform으로 launch template 하나만 만들었는데 두 개 생김
 ![image](https://github.com/user-attachments/assets/91e1d611-21b8-4f13-94ca-57fa6915d24c)
 
 <br>
+<br>
+<br>
 
 #### 두 launch template의 다른점
 
@@ -64,15 +71,20 @@ terraform으로 launch template 하나만 만들었는데 두 개 생김
 <br>
 
 ### tf-eks-cluster 
-![image](https://github.com/user-attachments/assets/fc7a73b3-d981-45f0-b7a3-b56e3a8929af)
-
-![image](https://github.com/user-attachments/assets/eb79f9d7-0df4-4411-a0b6-bd8f2dd3a1f6)
 
 terraform 코드로 생성한 노드 그룹 : `tf-eks-managed-node-group` ⇒ 생성 실패 <br>
 문제가 노드 그룹 생성 코드에 있다면, 같은 launch template(tf-eks-node-ltXXXX)으로 만들었을 때 노드그룹이 문제없이 생겨야 함 <br>
 ⇒ ssss라는 이름으로 launch template(tf-eks-node-ltXXXX) 사용해서 노드그룹 생성 ⇒ 생성 실패 <br>
 ⇒ launch template 없이 노드그룹 생성 (myself) ⇒ 생성 성공 <br>
 ⇒ 문제 원인 : launch template
+
+![image](https://github.com/user-attachments/assets/fc7a73b3-d981-45f0-b7a3-b56e3a8929af)
+
+![image](https://github.com/user-attachments/assets/eb79f9d7-0df4-4411-a0b6-bd8f2dd3a1f6)
+
+<br>
+<br>
+<br>
 
 ### [참고] 시작 템플릿 없이 노드그룹 생성해도 시작템플릿 하나 생성됨
 단, 리소스 태그는 없음 <br>
