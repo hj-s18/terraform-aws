@@ -1,4 +1,4 @@
-Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+Resource actions are indicated with the following symbols:
   + create
 
 Terraform will perform the following actions:
@@ -576,20 +576,6 @@ Terraform will perform the following actions:
       + subnet_id      = (known after apply)
     }
 
-  # aws_secretsmanager_secret.tf_rds_secret will be created
-  + resource "aws_secretsmanager_secret" "tf_rds_secret" {
-      + arn                            = (known after apply)
-      + force_overwrite_replica_secret = false
-      + id                             = (known after apply)
-      + name                           = "aws/rds/instance/tf_rds_test"
-      + name_prefix                    = (known after apply)
-      + policy                         = (known after apply)
-      + recovery_window_in_days        = 30
-      + tags_all                       = (known after apply)
-
-      + replica (known after apply)
-    }
-
   # aws_security_group.tf_bastion_sg will be created
   + resource "aws_security_group" "tf_bastion_sg" {
       + arn                    = (known after apply)
@@ -647,20 +633,24 @@ Terraform will perform the following actions:
               + cidr_blocks      = [
                   + "0.0.0.0/0",
                 ]
-              + description      = "Allow DNS resolution"
-              + from_port        = 53
+              + from_port        = 0
               + ipv6_cidr_blocks = []
               + prefix_list_ids  = []
-              + protocol         = "udp"
+              + protocol         = "-1"
               + security_groups  = []
               + self             = false
-              + to_port          = 53
+              + to_port          = 0
+                # (1 unchanged attribute hidden)
             },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
           + {
               + cidr_blocks      = [
-                  + "0.0.0.0/0",
+                  + "10.0.3.0/24",
+                  + "10.0.4.0/24",
                 ]
-              + description      = "Allow cluster to communicate with AWS services"
+              + description      = "Node groups to cluster API"
               + from_port        = 443
               + ipv6_cidr_blocks = []
               + prefix_list_ids  = []
@@ -669,20 +659,6 @@ Terraform will perform the following actions:
               + self             = false
               + to_port          = 443
             },
-          + {
-              + cidr_blocks      = []
-              + description      = "Allow cluster to communicate with worker nodes"
-              + from_port        = 10250
-              + ipv6_cidr_blocks = []
-              + prefix_list_ids  = []
-              + protocol         = "tcp"
-              + security_groups  = []
-              + self             = true
-              + to_port          = 10250
-            },
-        ]
-      + id                     = (known after apply)
-      + ingress                = [
           + {
               + cidr_blocks      = []
               + description      = "Allow bastion to communicate with the cluster API"
@@ -693,39 +669,6 @@ Terraform will perform the following actions:
               + security_groups  = (known after apply)
               + self             = false
               + to_port          = 443
-            },
-          + {
-              + cidr_blocks      = []
-              + description      = "Allow worker nodes to communicate with the cluster"
-              + from_port        = 10250
-              + ipv6_cidr_blocks = []
-              + prefix_list_ids  = []
-              + protocol         = "tcp"
-              + security_groups  = []
-              + self             = true
-              + to_port          = 10250
-            },
-          + {
-              + cidr_blocks      = []
-              + description      = "Allow worker nodes to use DNS (TCP)"
-              + from_port        = 53
-              + ipv6_cidr_blocks = []
-              + prefix_list_ids  = []
-              + protocol         = "tcp"
-              + security_groups  = []
-              + self             = true
-              + to_port          = 53
-            },
-          + {
-              + cidr_blocks      = []
-              + description      = "Allow worker nodes to use DNS (UDP)"
-              + from_port        = 53
-              + ipv6_cidr_blocks = []
-              + prefix_list_ids  = []
-              + protocol         = "udp"
-              + security_groups  = []
-              + self             = true
-              + to_port          = 53
             },
         ]
       + name                   = "tf-eks-cluster-sg"
@@ -750,34 +693,65 @@ Terraform will perform the following actions:
               + cidr_blocks      = [
                   + "0.0.0.0/0",
                 ]
-              + description      = "Allow nodes to communicate with AWS services"
-              + from_port        = 443
+              + from_port        = 0
               + ipv6_cidr_blocks = []
               + prefix_list_ids  = []
-              + protocol         = "tcp"
+              + protocol         = "-1"
               + security_groups  = []
               + self             = false
-              + to_port          = 443
-            },
-          + {
-              + cidr_blocks      = [
-                  + "0.0.0.0/0",
-                ]
-              + description      = "Allow nodes to resolve external DNS"
-              + from_port        = 53
-              + ipv6_cidr_blocks = []
-              + prefix_list_ids  = []
-              + protocol         = "udp"
-              + security_groups  = []
-              + self             = false
-              + to_port          = 53
+              + to_port          = 0
+                # (1 unchanged attribute hidden)
             },
         ]
       + id                     = (known after apply)
       + ingress                = [
           + {
               + cidr_blocks      = []
-              + description      = "Allow cluster to communicate with worker nodes"
+              + description      = "Cluster API to node 4443/tcp webhook"
+              + from_port        = 4443
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = (known after apply)
+              + self             = false
+              + to_port          = 4443
+            },
+          + {
+              + cidr_blocks      = []
+              + description      = "Cluster API to node 6443/tcp webhook"
+              + from_port        = 6443
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = (known after apply)
+              + self             = false
+              + to_port          = 6443
+            },
+          + {
+              + cidr_blocks      = []
+              + description      = "Cluster API to node 8443/tcp webhook"
+              + from_port        = 8443
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = (known after apply)
+              + self             = false
+              + to_port          = 8443
+            },
+          + {
+              + cidr_blocks      = []
+              + description      = "Cluster API to node 9443/tcp webhook"
+              + from_port        = 9443
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = (known after apply)
+              + self             = false
+              + to_port          = 9443
+            },
+          + {
+              + cidr_blocks      = []
+              + description      = "Cluster API to node groups"
               + from_port        = 443
               + ipv6_cidr_blocks = []
               + prefix_list_ids  = []
@@ -788,7 +762,7 @@ Terraform will perform the following actions:
             },
           + {
               + cidr_blocks      = []
-              + description      = "Allow cluster to manage worker nodes"
+              + description      = "Cluster API to node kubelets"
               + from_port        = 10250
               + ipv6_cidr_blocks = []
               + prefix_list_ids  = []
@@ -799,7 +773,29 @@ Terraform will perform the following actions:
             },
           + {
               + cidr_blocks      = []
-              + description      = "Allow node-to-node communication"
+              + description      = "Node to node CoreDNS UDP"
+              + from_port        = 53
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "udp"
+              + security_groups  = []
+              + self             = true
+              + to_port          = 53
+            },
+          + {
+              + cidr_blocks      = []
+              + description      = "Node to node CoreDNS"
+              + from_port        = 53
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = true
+              + to_port          = 53
+            },
+          + {
+              + cidr_blocks      = []
+              + description      = "Node to node ingress on ephemeral ports"
               + from_port        = 1025
               + ipv6_cidr_blocks = []
               + prefix_list_ids  = []
@@ -807,28 +803,6 @@ Terraform will perform the following actions:
               + security_groups  = []
               + self             = true
               + to_port          = 65535
-            },
-          + {
-              + cidr_blocks      = []
-              + description      = "Allow worker nodes to use DNS (TCP)"
-              + from_port        = 53
-              + ipv6_cidr_blocks = []
-              + prefix_list_ids  = []
-              + protocol         = "tcp"
-              + security_groups  = (known after apply)
-              + self             = false
-              + to_port          = 53
-            },
-          + {
-              + cidr_blocks      = []
-              + description      = "Allow worker nodes to use DNS (UDP)"
-              + from_port        = 53
-              + ipv6_cidr_blocks = []
-              + prefix_list_ids  = []
-              + protocol         = "udp"
-              + security_groups  = (known after apply)
-              + self             = false
-              + to_port          = 53
             },
         ]
       + name                   = "tf-eks-node-group-sg"
@@ -1108,7 +1082,7 @@ Terraform will perform the following actions:
       + rsa_bits                      = 2048
     }
 
-Plan: 42 to add, 0 to change, 0 to destroy.
+Plan: 41 to add, 0 to change, 0 to destroy.
 
 Changes to Outputs:
   + bastion_public_ip = (known after apply)
