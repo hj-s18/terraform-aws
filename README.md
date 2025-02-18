@@ -42,7 +42,7 @@ terraform으로 launch template 하나만 만들었는데 두 개 생김
 <br>
 <br>
 
-#### 안 만들었는데 생긴 launch template : eks-a0ca8c6e-198f-84d1-d713-eff82d3ec69e
+### 안 만들었는데 생긴 launch template : eks-a0ca8c6e-198f-84d1-d713-eff82d3ec69e
 
 ![lt 1](https://github.com/user-attachments/assets/e86f08c9-ea24-4f99-8726-c82bfb505251)
 
