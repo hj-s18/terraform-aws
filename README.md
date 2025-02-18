@@ -7,6 +7,17 @@
 [ec2-user@ip-192-168-10-138 ~]$ aws ssm get-parameter --name /aws/service/eks/optimized-ami/1.31/amazon-linux-2/recommended/image_id --region ap-northeast-2 --query "Parameter.Value" --output text
 ami-0fa05db9e3c145f63
 ```
+ <br>
+ 
+# 나중에 deployment.yaml 파일 만들 때 Secrets Manager 참조해야 함
+
+RDS 생성할 때 default로 만들어지는 것은 테라폼이 다 만들어지기 전까지 이름을 알 수 없어서 Secrets Manager 새로 만들어서 연결하려고 했음 <br>
+그런데 테라폼 코드에서 문법에 맞지 않다고 해서 테라폼 다 만들어진 후 가져와야 함 <br>
+terraform 으로 Secrets Manager 생성하면 어떻게 될지 궁금해서 생성해봄 <br>
+
+![terraform으로 생성한 secrets manager ](https://github.com/user-attachments/assets/d34e27cd-79e2-44e4-8575-5547de3de69a)
+
+
 
 <br>
 
