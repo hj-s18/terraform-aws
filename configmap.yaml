@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: mysql-config
 data:
-  MYSQL_HOST: "rds.tf.private.com"
+  MYSQL_HOST: "rds.tf.private.com"  # RDS 엔드포인트와 연결되어있는 Route53 FQDN
   MYSQL_PORT: "3306"
