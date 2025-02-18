@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-config
+data:
+  MYSQL_HOST: "rds.tf.private.com"
+  MYSQL_PORT: "3306"
