@@ -7,7 +7,7 @@ MySQL 접근 관련 변수들 EKS Secrets와 ConfigMap, AWS Secrets Manager 사�
 <br>
 <br>
 
-# bastion에서 mysql 설치 → RDS 접속 → RDS에 table 생성 → 확인용 데이터 삽입
+# bastion에서 mysql 설치 → RDS 접속 → table 생성 → 확인용 데이터 삽입
 
 ```
 # mysql 설치
