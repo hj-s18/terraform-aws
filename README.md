@@ -4,6 +4,15 @@
 
 <br>
 
+# 서브넷에 태그 추가
+
+![image](https://github.com/user-attachments/assets/a171dcde-7eb6-46d6-9548-37ba05bb14a0)
+
+![image](https://github.com/user-attachments/assets/ff9993a6-cbd1-48fc-8523-75dfbafcc882)
+
+
+<br>
+
 # 기본
 ```
 # 생성된 bastion에 접속
