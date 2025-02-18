@@ -11,8 +11,8 @@ resource "aws_eks_cluster" "tf_eks_cluster" {
       aws_subnet.tf_pri_sub_2.id
     ]
 
-    endpoint_public_access  = false                     # (Optional) kubectl과 통신할 때 사용하는 endpoint
-    endpoint_private_access = true                      # (Optional) node의 kubelet과 통신할 때 사용하는 endpoint
+    endpoint_public_access  = false                     # (Optional) 컨트롤 플래인이 kubectl과 통신할 때 사용하는 endpoint
+    endpoint_private_access = true                      # (Optional) 컨트롤 플래인이 node의 kubelet과 통신할 때 사용하는 endpoint
 
     security_group_ids = [                              # (Optional)
       aws_security_group.tf_eks_cluster_sg.id
@@ -75,64 +75,10 @@ resource "aws_security_group" "tf_eks_cluster_sg" {
     security_groups = [aws_security_group.tf_eks_node_group_sg.id]
   }
 
-  # DNS 요청 허용 (CoreDNS)
-  ingress {
-    from_port   = 53
-    to_port     = 53
-    protocol    = "udp"
-    description = "Allow worker nodes to use DNS (UDP)"
-    self = true
-  }
-
-  ingress {
-    from_port   = 53
-    to_port     = 53
-    protocol    = "tcp"
-    description = "Allow worker nodes to use DNS (TCP)"
-    self = true
-  }
-
-  # worker nodes → worker nodes
-  ingress {
-    from_port   = 10250
-    to_port     = 10250
-    protocol    = "tcp"
-    description = "Allow worker nodes to communicate with the cluster"
-    self = true  # 같은 보안 그룹 내부에서 통신 가능
-    # security_groups = [aws_security_group.tf_eks_node_group_sg.id]
-  }
-
-  #egress {
-  #  from_port   = 0
-  #  to_port     = 0
-  #  protocol    = "-1"
-  #  cidr_blocks = ["0.0.0.0/0"]
-  #}
-
-  # EKS Control Plane → 노드 (클러스터 → 노드)
   egress {
-    from_port   = 10250
-    to_port     = 10250
-    protocol    = "tcp"
-    description = "Allow cluster to communicate with worker nodes"
-    self = true
-  }
-
-  # EKS 클러스터 → 인터넷 (ECR, S3, 외부 API 호출 등)
-  egress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    description = "Allow cluster to communicate with AWS services"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  # DNS 요청 허용 (외부 도메인 조회)
-  egress {
-    from_port   = 53
-    to_port     = 53
-    protocol    = "udp"
-    description = "Allow DNS resolution"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
