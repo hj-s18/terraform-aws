@@ -37,7 +37,7 @@
 
 terraform으로 launch template 하나만 만들었는데 두 개 생김
 
-#### eks-a0ca8c6e-198f-84d1-d713-eff82d3ec69e
+#### 안 만들었는데 생긴 launch template : eks-a0ca8c6e-198f-84d1-d713-eff82d3ec69e
 
 ![lt 1](https://github.com/user-attachments/assets/e86f08c9-ea24-4f99-8726-c82bfb505251)
 
@@ -51,19 +51,27 @@ terraform으로 launch template 하나만 만들었는데 두 개 생김
 
 ![image](https://github.com/user-attachments/assets/91e1d611-21b8-4f13-94ca-57fa6915d24c)
 
-#### tf-eks-node-lt20250218113208559000000009
+<br>
 
+#### 두 launch template의 다른점
 
-
-다른점
 1. 리소스 태그 없음
 2. 고급 세부 정보에 IAM 인스턴스 프로파일 없음, 메타데이터에서 태그 허용부분도 아무것도 없음
 3. 템플릿 태그 없음
+
+<br>
+<br>
+<br>
 
 ### tf-eks-cluster 
 ![image](https://github.com/user-attachments/assets/fc7a73b3-d981-45f0-b7a3-b56e3a8929af)
 
 ![image](https://github.com/user-attachments/assets/eb79f9d7-0df4-4411-a0b6-bd8f2dd3a1f6)
 
-tf-eks-managed-node-group : terraform 코드로 생성한 노드 그룹 ⇒ 생성 실패 <br>
-문제가 노드 그룹 생성 코드에 있다면, 
+terraform 코드로 생성한 노드 그룹 : `tf-eks-managed-node-group` ⇒ 생성 실패 <br>
+문제가 노드 그룹 생성 코드에 있다면, 같은 launch template(tf-eks-node-ltXXXX)으로 만들었을 때 노드그룹이 문제없이 생겨야 함 <br>
+⇒ ssss라는 이름으로 launch template(tf-eks-node-ltXXXX) 사용해서 노드그룹 생성 ⇒ 생성 실패 <br>
+⇒ launch template 없이 노드그룹 생성 (myself) ⇒ 생성 성공 <br>
+⇒ 문제 원인 : launch template
+
+###
