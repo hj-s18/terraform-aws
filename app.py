@@ -14,7 +14,7 @@ db_name = os.getenv("MYSQL_DATABASE")
 
 # AWS Secrets Manager에서 RDS 비밀번호 가져오기
 secret_name = os.getenv("AWS_SECRET_NAME")
-region_name = os.getenv("AWS_REGION", "us-east-1")
+region_name = os.getenv("AWS_REGION", "ap-northeast-2")
 
 session = boto3.session.Session()
 client = session.client(service_name="secretsmanager", region_name=region_name)
