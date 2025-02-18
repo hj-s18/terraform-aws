@@ -26,6 +26,21 @@ aws eks --region ap-northeast-2 update-kubeconfig --name tf-eks-cluster
 
 <br>
 
+# .aws/config & .aws/credentials
+```
+[ec2-user@ip-10-0-1-100 ~]$ cat .aws/config
+[default]
+region = ap-northeast-2
+output = json
+
+[ec2-user@ip-10-0-1-100 ~]$ cat .aws/credentials
+[default]
+aws_access_key_id = XXXX
+aws_secret_access_key = XXXX
+```
+
+<br>
+
 # .kube/config
 ```
 [ec2-user@ip-10-0-1-100 ~]$ cat .kube/config
