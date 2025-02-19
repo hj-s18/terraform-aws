@@ -44,6 +44,8 @@ resource "aws_launch_template" "tf_eks_node_lt" {
     }
   }
 
+  user_data = base64encode(templatefile("userdata.tpl", { CLUSTER_NAME = aws_eks_cluster.tf_eks_cluster.name, B64_CLUSTER_CA = aws_eks_cluster.tf_eks_cluster.certificate_authority[0].data, API_SERVER_URL = aws_eks_cluster.tf_eks_cluster.endpoint, CONTAINER_RUNTIME = "containerd" }))
+
 }
 
 # AWS eks_node_group 생성
