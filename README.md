@@ -42,6 +42,8 @@ terraform으로 launch template 하나만 만들었는데 두 개 생김
 
 ### 안 만들었는데 생긴 launch template : eks-a0ca8c6e-198f-84d1-d713-eff82d3ec69e
 
+terraform으로 만든 launch template을 사용하여 노드그룹을 만들 때 생성되는 launch template
+
 ![lt 1](https://github.com/user-attachments/assets/e86f08c9-ea24-4f99-8726-c82bfb505251)
 
 ![image](https://github.com/user-attachments/assets/d66d57fa-2a61-4308-839d-4f7a9efa9fb7)
@@ -58,8 +60,9 @@ terraform으로 launch template 하나만 만들었는데 두 개 생김
 <br>
 <br>
 
-### 두 launch template의 다른점
+### 두 launch template의 다른점 
 
+terraform 으로 생성한 launch template에는,
 1. 리소스 태그 없음
 2. 고급 세부 정보에 IAM 인스턴스 프로파일 없음, 메타데이터에서 태그 허용부분도 아무것도 없음
 3. 템플릿 태그 없음
