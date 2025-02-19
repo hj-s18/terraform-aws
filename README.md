@@ -93,4 +93,21 @@ resource "aws_eks_node_group" "tf_eks_managed_node_group" {
 
 ![image](https://github.com/user-attachments/assets/62f4565d-71fe-4e36-86f6-23bc3f1f6793)
 
+<br>
+<br>
+<br>
+
+# 이렇게 노드그룹 생성했을 때 생성되는 시작 템플릿
+
+![lt 참고할것](https://github.com/user-attachments/assets/e3627099-0ef2-4a62-8ada-681470866199)
+
+![image](https://github.com/user-attachments/assets/8e53db4b-53fe-4374-9a0a-5e288fe91390)
+
+![image](https://github.com/user-attachments/assets/69e47bee-b844-4de4-a923-1dd478842760)
+
+![image](https://github.com/user-attachments/assets/2c58ef9f-d918-4efb-80d6-2d6ce2f3b5d1)
+
+![image](https://github.com/user-attachments/assets/4291ca3e-3ac4-4226-a84e-007dcb055da9)
+
+![image](https://github.com/user-attachments/assets/9150fa75-fca4-4498-87d9-d9c9ee13b59b)
 
