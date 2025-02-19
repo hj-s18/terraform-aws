@@ -431,6 +431,23 @@ Terraform will perform the following actions:
         }
 
       + metadata_options (known after apply)
+
+      + tag_specifications {
+          + resource_type = "instance"
+          + tags          = {
+              + "Name"               = "tf_eks_node_lt"
+              + "eks:cluster-name"   = "tf-eks-cluster"
+              + "eks:nodegroup-name" = "tf-eks-managed-node-group"
+            }
+        }
+      + tag_specifications {
+          + resource_type = "volume"
+          + tags          = {
+              + "Name"               = "tf_eks_node_lt"
+              + "eks:cluster-name"   = "tf-eks-cluster"
+              + "eks:nodegroup-name" = "tf-eks-managed-node-group"
+            }
+        }
     }
 
   # aws_nat_gateway.tf_nat will be created
