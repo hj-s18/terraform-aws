@@ -23,8 +23,8 @@
 
 # 문제 원인 예측
 
-예상 문제 원인 1 : launch template 생성 terraform 코드 오류 <br>
-예상 문제 원인 2 : 노드그룹 생성 terraform 코드 오류
+1. 예상 문제 원인 1 : launch template 생성 terraform 코드 오류 <br>
+2. 예상 문제 원인 2 : 노드그룹 생성 terraform 코드 오류
 
 <br>
 <br>
@@ -114,8 +114,8 @@ terraform 코드로 생성한 노드 그룹 : `tf-eks-managed-node-group` ⇒ �
 2. 시작 템플릿 없이 테라폼 코드 생성
 
 해보기 <br>
-1 : 07-eks-6 <br>
-2 : 07-eks-5 
+1. 07-eks-6 <br>
+2. 07-eks-5 
 
 <br>
 <br>
