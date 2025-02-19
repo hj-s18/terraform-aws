@@ -4,7 +4,7 @@ resource "aws_launch_template" "tf_eks_node_lt" {
   image_id      = "ami-0fa05db9e3c145f63"  # EKS 지원 AMI ID (Amazon Linux 2 AMI)
   instance_type = "t3.medium"
 
-  vpc_security_groups_ids = [aws_security_group.tf_eks_node_group_sg.id] 
+  vpc_security_group_ids = [aws_security_group.tf_eks_node_group_sg.id] 
 
   block_device_mappings {
     device_name = "/dev/xvda"        # Amazon Linux 2 기본 루트 디바이스
@@ -19,8 +19,10 @@ resource "aws_launch_template" "tf_eks_node_lt" {
   # 태그 적용
   tags = {
     Name = "tf_eks_node_lt"
+    /*
     "eks:cluster-name"   = "tf-eks-cluster"
     "eks:nodegroup-name" = "tf-eks-managed-node-group"
+    */
   }
 
   /*
