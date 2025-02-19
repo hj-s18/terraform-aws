@@ -1,6 +1,6 @@
-# terraform 
+# 노드 그룹 테라폼 리소스 코드
 
-### launch_template
+## launch_template
 (Optional) Configuration block with Launch Template settings. See launch_template below for details. Conflicts with remote_access. <br>
 
 #### `launch_template` Configuration Block <br>
@@ -16,7 +16,7 @@ Using the default_version or latest_version attribute of the aws_launch_template
 
 <br>
 
-### remote_access 
+## remote_access 
 (Optional) Configuration block with remote access settings. See remote_access below for details. Conflicts with launch_template. <br>
 
 #### `remote_access` Configuration Block <br>
