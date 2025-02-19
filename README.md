@@ -1,3 +1,36 @@
+# terraform 
+
+### launch_template
+launch_template - (Optional) Configuration block with Launch Template settings. See launch_template below for details. Conflicts with remote_access.
+
+<br>
+
+#### `launch_template` Configuration Block <br>
+`id` - (Optional) Identifier of the EC2 Launch Template. Conflicts with name. <br>
+`name` - (Optional) Name of the EC2 Launch Template. Conflicts with id. <br>
+`version` - (Required) EC2 Launch Template version number. <br>
+While the API accepts values like $Default and $Latest, the API will convert the value to the associated version number (e.g., 1) on read and Terraform will show a difference on next plan. <br>
+Using the default_version or latest_version attribute of the aws_launch_template resource or data source is recommended for this argument.
+
+<br>
+
+### remote_access 
+remote_access - (Optional) Configuration block with remote access settings. See remote_access below for details. Conflicts with launch_template.
+
+<br>
+
+#### `remote_access` Configuration Block <br>
+`ec2_ssh_key` - (Optional) EC2 Key Pair name that provides access for remote communication with the worker nodes in the EKS Node Group. <br>
+If you specify this configuration, but do not specify source_security_group_ids when you create an EKS Node Group, either port 3389 for Windows, or port 22 for all other operating systems is opened on the worker nodes to the Internet (0.0.0.0/0). <br>
+For Windows nodes, this will allow you to use RDP, for all others this allows you to SSH into the worker nodes. <br>
+
+`source_security_group_ids` - (Optional) Set of EC2 Security Group IDs to allow SSH access (port 22) from on the worker nodes. <br>
+If you specify ec2_ssh_key, but do not specify this configuration when you create an EKS Node Group, port 22 on the worker nodes is opened to the Internet (0.0.0.0/0).
+
+<br>
+<br>
+<br>
+
 # 노드그룹 생성 오류 났었음 ⇒ `07-eks-5` 브랜치에 바로 수정함
 
 ```
