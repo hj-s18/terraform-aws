@@ -1,13 +1,15 @@
 # terraform 
 
 ### launch_template
-launch_template - (Optional) Configuration block with Launch Template settings. See launch_template below for details. Conflicts with remote_access.
-
-<br>
+(Optional) Configuration block with Launch Template settings. See launch_template below for details. Conflicts with remote_access. <br>
 
 #### `launch_template` Configuration Block <br>
+Either id or name must be specified. <br>
+
 `id` - (Optional) Identifier of the EC2 Launch Template. Conflicts with name. <br>
+
 `name` - (Optional) Name of the EC2 Launch Template. Conflicts with id. <br>
+
 `version` - (Required) EC2 Launch Template version number. <br>
 While the API accepts values like $Default and $Latest, the API will convert the value to the associated version number (e.g., 1) on read and Terraform will show a difference on next plan. <br>
 Using the default_version or latest_version attribute of the aws_launch_template resource or data source is recommended for this argument.
@@ -15,9 +17,7 @@ Using the default_version or latest_version attribute of the aws_launch_template
 <br>
 
 ### remote_access 
-remote_access - (Optional) Configuration block with remote access settings. See remote_access below for details. Conflicts with launch_template.
-
-<br>
+(Optional) Configuration block with remote access settings. See remote_access below for details. Conflicts with launch_template. <br>
 
 #### `remote_access` Configuration Block <br>
 `ec2_ssh_key` - (Optional) EC2 Key Pair name that provides access for remote communication with the worker nodes in the EKS Node Group. <br>
