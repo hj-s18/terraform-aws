@@ -100,9 +100,9 @@ resource "aws_eks_node_group" "tf_eks_managed_node_group" {
 # 이렇게 노드그룹 생성했을 때 생성되는 시작 템플릿
 
 연결되어있는 보안그룹 <br>
-- eks-cluster-sg-tf-eks-cluster-XXXX (sg-052e81f0c0d710325)
+- eks-cluster-sg-tf-eks-cluster-XXXX (sg-052e81f0c0d710325) <br>
   : EKS created security group applied to ENI that is attached to EKS Control Plane master nodes, as well as any managed workloads. <br>
-- eks-remoteAccess-XXXX (sg-0ebca31a77497ba6c)
+- eks-remoteAccess-XXXX (sg-0ebca31a77497ba6c) <br>
   : Security group for all nodes in the nodeGroup to allow SSH access <br>
 
 ![lt 참고할것](https://github.com/user-attachments/assets/e3627099-0ef2-4a62-8ada-681470866199)
