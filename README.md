@@ -123,3 +123,7 @@ terraform 코드로 생성한 노드 그룹 : `tf-eks-managed-node-group` ⇒ �
 <br>
 <br>
 <br>
+
+# launch template에 문법오류 있었음
+
+⇒ 브랜치 `07-eks-6`
