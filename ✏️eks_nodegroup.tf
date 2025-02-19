@@ -19,13 +19,11 @@ resource "aws_launch_template" "tf_eks_node_lt" {
   # 태그 적용
   tags = {
     Name = "tf_eks_node_lt"
-    /*
     "eks:cluster-name"   = "tf-eks-cluster"
     "eks:nodegroup-name" = "tf-eks-managed-node-group"
-    */
   }
 
-  /*
+  
   # 태그를 tags 블록으로 설정하면 Launch Template 자체에만 적용됨
   # EC2 인스턴스 및 EBS 볼륨에도 적용되도록 tag_specifications 사용해야 함
   tag_specifications {
@@ -45,7 +43,7 @@ resource "aws_launch_template" "tf_eks_node_lt" {
       "eks:nodegroup-name" = "tf-eks-managed-node-group"
     }
   }
-  */
+
 }
 
 # AWS eks_node_group 생성
