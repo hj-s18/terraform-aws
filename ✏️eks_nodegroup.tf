@@ -61,9 +61,9 @@ resource "aws_eks_node_group" "tf_eks_managed_node_group" {
   }
 
   scaling_config {                     # (Required)
-    desired_size = 3
-    max_size     = 5
-    min_size     = 3                   # 가용성을 유지하기 위해 최소 3개 이상이 권장됨 ⇒ HA 보장
+    desired_size = 2
+    max_size     = 3
+    min_size     = 2
   }
 
   capacity_type  = "ON_DEMAND"
