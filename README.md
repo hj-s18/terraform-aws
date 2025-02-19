@@ -31,6 +31,15 @@ If you specify ec2_ssh_key, but do not specify this configuration when you creat
 <br>
 <br>
 
+# 아랫부분 잘못 생각해서 진행한 트러블슈팅임..
+
+remote_access는 22번 포트로 노드에 접근할 수 있도록 하는 것임.
+
+
+<br>
+<br>
+<br>
+
 # 노드그룹 생성 오류 났었음 ⇒ `07-eks-5` 브랜치에 바로 수정함
 
 ```
