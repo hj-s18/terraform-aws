@@ -10,8 +10,8 @@ deployment.apps/flask-app created
 
 [ec2-user@ip-10-0-1-189 terraform-aws]$ kubectl get nodes
 NAME                                           STATUS   ROLES    AGE    VERSION
-ip-10-0-3-83.ap-northeast-2.compute.internal   Ready    <none>   118m   v1.31.5-eks-5                              d632ec
-ip-10-0-4-9.ap-northeast-2.compute.internal    Ready    <none>   118m   v1.31.5-eks-5                              d632ec
+ip-10-0-3-83.ap-northeast-2.compute.internal   Ready    <none>   118m   v1.31.5-eks-5
+ip-10-0-4-9.ap-northeast-2.compute.internal    Ready    <none>   118m   v1.31.5-eks-5
 
 [ec2-user@ip-10-0-1-189 terraform-aws]$ kubectl get svc
 NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
@@ -234,6 +234,10 @@ spec:
 <br>
 
 # 다시 서비스 배포해보기
+
+<br>
+
+### yaml로 파드 배포 → 기본 웹 페이지 확인
 
 ```
 # yaml 모두 배포
