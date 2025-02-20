@@ -70,7 +70,7 @@ testcode                                                            latest      
 docker push <계정ID>.dkr.ecr.<리전>.amazonaws.com/test-ecr-namespace/test-ecr:latest
 
 ---
-[terraform@ip-192-168-10-138 testcode]$ docker push 707677861059.dkr.ecr.ap-northeast-2.amazonaws.com/test-ecr-namespace/test-ecr:test
+[terraform@ip-192-168-10-138 testcode]$ docker push <계정ID>.dkr.ecr.<리전>.amazonaws.com/test-ecr-namespace/test-ecr:test
 The push refers to repository [<계정ID>.dkr.ecr.<리전>.amazonaws.com/test-ecr-namespace/test-ecr]
 ...생략...
 test: digest: sha256:32c8d4b6f1866b7d69a9e88775b605f0b9c142df47398887cb4c6c14e257f5f0 size: 2206
@@ -119,7 +119,7 @@ exit
 <br>
 <br>
 
-### 例
+## 例
 
 ```
 [ec2-user@ip-10-0-1-172 ~]$ sudo yum update -y
