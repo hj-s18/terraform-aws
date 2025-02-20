@@ -305,8 +305,10 @@ UnboundLocalError: local variable 'connection' referenced before assignment
 ```
 
 <br>
+<br>
+<br>
 
-### RDS 보안그룹에 노드 그룹에서 들어오는 3306포트 인바운드규칙 추가해줌
+# RDS 보안그룹에 노드 그룹에서 들어오는 3306포트 인바운드규칙 추가해줌
 ![image](https://github.com/user-attachments/assets/9a6ca64c-7cff-4da2-a3d3-726e6f526368)
 
 
