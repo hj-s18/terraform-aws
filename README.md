@@ -332,7 +332,7 @@ UnboundLocalError: local variable 'connection' referenced before assignment
 <br>
 <br>
 
-# 참고 : 나는 Secrets Manager 이렇게 생성하면 이름도 정할 수 있음
+# 참고 : Secrets Manager 이렇게 생성하면 이름도 정할 수 있음
 Terraform에서 자동으로 만들면 이름 이상함 <br>
 
 ```
