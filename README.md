@@ -15,8 +15,12 @@ deployment.yaml  nginx.yaml  svc-cip.yaml  svc-lb.yaml  svc-np.yaml
 deployment.apps/nginx created
 
 [ec2-user@ip-10-0-1-172 hj]$ kubectl get deployment -o wide
-NAME        READY   UP-TO-DATE   AVAILABLE   AGE    CONTAINERS       IMAGES                                                                                 SELECTOR
-nginx       3/3     3            3           9s     nginxpod         nginx                                                                                  app=nginxpod
+NAME        READY   UP-TO-DATE   AVAILABLE   AGE    CONTAINERS       IMAGES        SELECTOR
+nginx       3/3     3            3           9s     nginxpod         nginx         app=nginxpod
+
+[ec2-user@ip-10-0-1-172 hj]$ kubectl get deployment -o wide --show-labels
+NAME        READY   UP-TO-DATE   AVAILABLE   AGE     CONTAINERS       IMAGES       SELECTOR       LABELS
+nginx       3/3     3            3           4m48s   nginxpod         nginx        app=nginxpod   <none>
 
 [ec2-user@ip-10-0-1-172 hj]$ kubectl describe deployment nginx
 Name:                   nginx
@@ -148,26 +152,36 @@ service/svc-cip created
 [ec2-user@ip-10-0-1-172 hj]$ kubectl get svc -o wide
 NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE   SELECTOR
 kubernetes   ClusterIP   172.20.0.1       <none>        443/TCP    17h   <none>
-svc-cip      ClusterIP   172.20.166.122   <none>        5000/TCP   9s    app=nginxpod
+svc-cip      ClusterIP   172.20.154.241   <none>        5000/TCP   9s    app=nginxpod
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl get pods -o wide --show-labels
-NAME                         READY   STATUS    RESTARTS   AGE     IP           NODE                                            NOMINATED NODE   READINESS GATES   LABELS
-nginx-7998648bbc-glbmn       1/1     Running   0          4m21s   10.0.3.102   ip-10-0-3-117.ap-northeast-2.compute.internal   <none>           <none>            app=nginxpod,pod-template-hash=7998648bbc
-nginx-7998648bbc-xxrc9       1/1     Running   0          4m21s   10.0.3.36    ip-10-0-3-117.ap-northeast-2.compute.internal   <none>           <none>            app=nginxpod,pod-template-hash=7998648bbc
-nginx-7998648bbc-z2r2l       1/1     Running   0          4m21s   10.0.4.109   ip-10-0-4-148.ap-northeast-2.compute.internal   <none>           <none>            app=nginxpod,pod-template-hash=7998648bbc
+[ec2-user@ip-10-0-1-172 hj]$ kubectl describe svc svc-cip
+Name:                     svc-cip
+Namespace:                default
+Labels:                   <none>
+Annotations:              <none>
+Selector:                 app=nginxpod
+Type:                     ClusterIP
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       172.20.154.241
+IPs:                      172.20.154.241
+Port:                     http  5000/TCP
+TargetPort:               80/TCP
+Endpoints:                10.0.3.102:80,10.0.3.36:80,10.0.4.109:80
+Session Affinity:         None
+Internal Traffic Policy:  Cluster
+Events:                   <none>
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl get deployment
-NAME        READY   UP-TO-DATE   AVAILABLE   AGE
-nginx       3/3     3            3           4m35s
-
-[ec2-user@ip-10-0-1-172 hj]$ kubectl get deployment -o wide --show-labels
-NAME        READY   UP-TO-DATE   AVAILABLE   AGE     CONTAINERS       IMAGES                                                                                 SELECTOR       LABELS
-nginx       3/3     3            3           4m48s   nginxpod         nginx                                                                                  app=nginxpod   <none>
+[ec2-user@ip-10-0-1-172 hj]$ kubectl get ep
+NAME         ENDPOINTS                                  AGE
+kubernetes   10.0.3.191:443,10.0.4.145:443              18h
+svc-cip      10.0.3.102:80,10.0.3.36:80,10.0.4.109:80   2m49s
+svc-lb       10.0.3.102:80,10.0.3.36:80,10.0.4.109:80   24m
 
 [ec2-user@ip-10-0-1-172 hj]$ kubectl run shell -it --rm --image centos:7 bash
 If you don't see a command prompt, try pressing enter.
 
-[root@shell /]# curl 172.20.166.122:5000
+[root@shell /]# curl 172.20.154.241:5000
 <h1>Welcome to nginx!</h1>
 
 [root@shell /]# curl svc-cip:5000
