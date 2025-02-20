@@ -127,6 +127,10 @@ service/testcode-svc created
 
 # 페이지 안 뜸 ⇒ 파드 로그 확인하여 원인 파악하기
 
+<br>
+
+### testcode 서비스가 잘 동작하는지 확인 ⇒ 실패
+
 ```
 # ClusterIP는 클러스터 내부통신용 이므로 테스트 pod 하나 생성 후 들어가서 curl 명령 해보기
 [ec2-user@ip-10-0-1-172 testcode]$ kubectl get svc -o wide -n testcode-namespace
