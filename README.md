@@ -1,9 +1,9 @@
 # 노드 그룹 테라폼 리소스 코드
 
-## launch_template
+### launch_template
 (Optional) Configuration block with Launch Template settings. See launch_template below for details. Conflicts with remote_access. <br>
 
-#### `launch_template` Configuration Block <br>
+##### `launch_template` Configuration Block <br>
 Either id or name must be specified. <br>
 
 `id` - (Optional) Identifier of the EC2 Launch Template. Conflicts with name. <br>
@@ -16,10 +16,10 @@ Using the default_version or latest_version attribute of the aws_launch_template
 
 <br>
 
-## remote_access 
+### remote_access 
 (Optional) Configuration block with remote access settings. See remote_access below for details. Conflicts with launch_template. <br>
 
-#### `remote_access` Configuration Block <br>
+##### `remote_access` Configuration Block <br>
 `ec2_ssh_key` - (Optional) EC2 Key Pair name that provides access for remote communication with the worker nodes in the EKS Node Group. <br>
 If you specify this configuration, but do not specify source_security_group_ids when you create an EKS Node Group, either port 3389 for Windows, or port 22 for all other operating systems is opened on the worker nodes to the Internet (0.0.0.0/0). <br>
 For Windows nodes, this will allow you to use RDP, for all others this allows you to SSH into the worker nodes. <br>
@@ -46,7 +46,11 @@ remote_access는 22번 포트로 노드에 접근할 수 있도록 하는 것임
 
 ---
 
+<br>
+
 #### 일단 잘못된 방향이긴 했는데, 코드 수정한 것 정리해 둠
+
+<br>
 
 # 노드그룹 생성 오류 났었음 ⇒ 현재 브랜치(`07-eks-5`)에 바로 수정함
 
