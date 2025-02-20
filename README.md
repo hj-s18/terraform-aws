@@ -2,7 +2,7 @@
 
 MySQL 접근 관련 변수들을 EKS Secrets, ConfigMap 그리고 AWS Secrets Manager 에서 가져와 사용하는 테스트 코드 <br>
 
-⇒ `test-testcode-yaml` 브랜치에 관련 설정 있음 <br>
+⇒ `test-2-testcode-yaml` 브랜치에 관련 설정 있음 <br>
 
 <br>
 <br>
