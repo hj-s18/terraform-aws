@@ -580,3 +580,7 @@ Terraform에서 자동으로 만들면 이름 이상함 <br>
 ```
 aws secretsmanager create-secret --name RDSPassword --secret-string '{"password":"mypassword"}'
 ```
+
+<br>
+<br>
+<br>
