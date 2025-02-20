@@ -1,13 +1,13 @@
 # test code
 
-MySQL 접근 관련 변수들 EKS Secrets와 ConfigMap, AWS Secrets Manager 사용할 수 있도록 코드 변경 <br>
-⇒ EKS yaml 파일에 관련 설정 있음 <br>
+MySQL 접근 관련 변수들을 EKS Secrets, ConfigMap 그리고 AWS Secrets Manager 에서 가져와 사용하는 테스트 코드 <br>
+⇒ test-testcode-yaml 브랜치에 관련 설정 있음 <br>
 
 <br>
 <br>
 <br>
 
-# bastion에서 mysql 설치 → RDS 접속 → table 생성 → 확인용 데이터 삽입
+# mysql 설치 → RDS 접속 → table 생성 → 확인용 데이터 삽입
 
 ```
 # mysql 설치
