@@ -16,7 +16,11 @@ Secrets Manager에 접근할 수 있는 권한도 필요하다. <br>
 <br>
 <br>
 
-# 깃허브에서 k8s 관련 yaml 파일 클론
+# 테스트 코드 배포해서 rds와 잘 연결되는지 통신 확인하기
+
+<br>
+
+### 깃허브에서 k8s 관련 yaml 파일 클론
 
 ```
 # EKS 컨트롤 플레인에 kubectl 요청 보낼 인스턴스로 이동
@@ -45,10 +49,6 @@ kubectl apply -f .
 
 <br>
 <br>
-<br>
-
-# 테스트 코드 배포해서 rds와 잘 연결되는지 통신 확인하기
-
 <br>
 
 ### testcode-namespace 네임스페이스에 yaml 파일로 파드 배포
@@ -125,7 +125,7 @@ service/testcode-svc created
 <br>
 <br>
 
-# 페이지 안 뜸
+# 페이지 안 뜸 ⇒ 파드 로그 확인하여 원인 파악하기
 
 ```
 # ClusterIP는 클러스터 내부통신용 이므로 테스트 pod 하나 생성 후 들어가서 curl 명령 해보기
