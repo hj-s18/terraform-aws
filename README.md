@@ -109,7 +109,7 @@ eksctl utils associate-iam-oidc-provider --region=ap-northeast-2 --cluster=tf-ek
 <br>
 <br>
 
-### IAM 정책 생성 ⇒ AWS에 등록
+### IAM 정책 생성
 
 ```
 # IAM 정책 생성 (Secrets Manager 접근 권한 가짐)
@@ -125,8 +125,16 @@ cat <<EOF > secrets-irsa-policy.json
     ]
 }
 EOF
+```
 
-# 위 정책을 AWS에 등록
+<br>
+<br>
+<br>
+
+# 생성한 정책 AWS에 등록
+
+```
+# AWS에 정책 등록
 aws iam create-policy --policy-name SecretsManagerIRSAReadPolicy --policy-document file://secrets-irsa-policy.json
 
 # 이렇게 출력됨 ⇒ 여기서 Arn 사용할 것임
@@ -155,9 +163,9 @@ aws iam create-policy --policy-name SecretsManagerIRSAReadPolicy --policy-docume
 ```
 # IRSA용 IAM Role을 생성하고, EKS의 서비스 계정과 연결 (위 출력에서 Arn 사용함)
 eksctl create iamserviceaccount \
- --name secrets-access-sa \     # 사용할 Service Account 이름 ⇒ deployment에 연결해 줄 것임
- --namespace default \          # 원하는 네임스페이스
- --cluster tf-eks-cluster \     # 사용 중인 EKS 클러스터 이름
+ --name secrets-access-sa \          # 사용할 Service Account 이름 ⇒ deployment에 연결해 줄 것임
+ --namespace default \               # 원하는 네임스페이스
+ --cluster tf-eks-cluster \          # 사용 중인 EKS 클러스터 이름
  --attach-policy-arn arn:aws:iam::<계정ID>:policy/SecretsManagerIRSAReadPolicy \   # 생성한 정책 Arn
  --approve
 
@@ -212,7 +220,7 @@ spec:
               name: mysql-secret
               key: MYSQL_DATABASE
         - name: AWS_SECRET_NAME
-          value: "rds!db-XXXX"   # Secrets Manager의 시크릿 이름
+          value: "rds!db-XXXX"    # Secrets Manager 이름 : RDS 접근용 password
         - name: AWS_REGION
           value: "ap-northeast-2"
 ```
@@ -250,8 +258,19 @@ flask-app-66f4b576f4-586rm   1/1     Running   0          49s
     </form>
     <br>
     <a href="/items">저장된 상품 보기</a>
+```
 
-# 아직 RDS 연결 안 됨
+<br>
+<br>
+<br>
+
+# RDS 연결 실패 원인 : 보안그룹 설정
+
+RDS ↔ 노드 통신 필요 <br>
+⇒ RDS에 보안그룹에 노드그룹에서 들어오는 인바운드 규칙 추가하기 <br>
+
+```
+# RDS와 연결되어야 볼 수 있는 페이지 접근해보기 : 실패 ⇒ 아직 RDS 연결 안 됨
 [ec2-user@ip-10-0-1-172 test]$ kubectl exec -it flask-app-66f4b576f4-4zf5q -- curl localhost:5000/items
 <!doctype html>
 <html lang=en>
@@ -279,9 +298,12 @@ Traceback (most recent call last):
   File "/app/app.py", line 83, in view_items
     connection.close()
 UnboundLocalError: local variable 'connection' referenced before assignment
+```
 
-# RDS ↔ 노드 통신 가능하도록 보안 그룹 규칙 추가
-# RDS 보안그룹에 노드 그룹에서 들어오는 3306포트 인바운드규칙 추가
+### RDS 보안그룹에 노드 그룹에서 들어오는 3306포트 인바운드규칙 추가해줌
+
+```
+# 다시 RDS와 연결되어야 볼 수 있는 페이지 접근해보기
 [ec2-user@ip-10-0-1-172 test]$ kubectl exec -it flask-app-66f4b576f4-4ntbc -- curl localhost:5000/items
 <h1>저장된 상품 목록</h1><ul><li>Americano - 2000.00원</li></ul><br><a href='/'>상품 추가하기</a>
 
