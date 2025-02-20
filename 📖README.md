@@ -240,6 +240,8 @@ EKS 클러스터에 IAM OIDC Provider 설정 <br>
 
 # 방법2 사용하기 
 
+<br>
+
 ### EKS 클러스터에 IAM OIDC Provider 설정
 
 ```
@@ -504,7 +506,9 @@ exit
 <br>
 <br>
 
-# 첨고
+# 참고
+
+<br>
 
 ### 다른 namespace에 있어도 노드들끼리 통신 가능
 
