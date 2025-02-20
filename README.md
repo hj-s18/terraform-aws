@@ -101,6 +101,7 @@ sudo mv /tmp/eksctl /usr/local/bin
 eksctl version
 
 # EKS 클러스터에 IAM OIDC Provider 설정
+eksctl utils associate-iam-oidc-provider --region=<리전> --cluster=<클러스터ID> --approve
 eksctl utils associate-iam-oidc-provider --region=ap-northeast-2 --cluster=tf-eks-cluster --approve
 ```
 
@@ -133,7 +134,7 @@ aws iam create-policy --policy-name SecretsManagerIRSAReadPolicy --policy-docume
     "Policy": {
         "PolicyName": "SecretsManagerIRSAReadPolicy",
         "PolicyId": "ANPA2JRHDGTB2KJVHB36V",
-        "Arn": "arn:aws:iam::<리전>:policy/SecretsManagerIRSAReadPolicy",
+        "Arn": "arn:aws:iam::<계정ID>:policy/SecretsManagerIRSAReadPolicy",
         "Path": "/",
         "DefaultVersionId": "v1",
         "AttachmentCount": 0,
