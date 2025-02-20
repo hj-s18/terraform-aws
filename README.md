@@ -283,7 +283,7 @@ UnboundLocalError: local variable 'connection' referenced before assignment
 # RDS ↔ 노드 통신 가능하도록 보안 그룹 규칙 추가
 # RDS 보안그룹에 노드 그룹에서 들어오는 3306포트 인바운드규칙 추가
 [ec2-user@ip-10-0-1-172 test]$ kubectl exec -it flask-app-66f4b576f4-4ntbc -- curl localhost:5000/items
-<h1>저장된 상품 목록</h1><ul><li>Americano - 2000.00원</li></ul><br><a href='/'>상품 추가하기</a>[ec2-user@ip-10-0-1-172 test]$
+<h1>저장된 상품 목록</h1><ul><li>Americano - 2000.00원</li></ul><br><a href='/'>상품 추가하기</a>
 
 # pod 다시 실행하고 확인했더니 로그 오류도 없이 잘 통신되고 있음
 [ec2-user@ip-10-0-1-172 test]$ kubectl logs flask-app-66f4b576f4-4ntbc
