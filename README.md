@@ -77,8 +77,6 @@ EKS의 워커 노드(EC2) 또는 파드가 AWS Secrets Manager에서 비밀번�
 - 비밀 이름이 "rds!"로 시작하는 모든 secret에 대해 적용
 
 <br>
-<br>
-<br>
 
 ### 방법2 : IRSA (IAM Role for Service Account) 적용
 
