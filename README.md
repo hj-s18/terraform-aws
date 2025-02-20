@@ -1,4 +1,4 @@
-# RDS 연결 테스트 dev 파드로 실행시키기
+# RDS 연결 테스트 코드 파드로 실행시키기
 
 ```
 [ec2-user@ip-10-0-1-189 terraform-aws]$ kubectl apply -f configmap.yaml
