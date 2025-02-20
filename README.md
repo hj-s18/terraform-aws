@@ -43,7 +43,7 @@ flask-app-7f657f4b8c-p7ckn   1/1     Running   0          7m33s
 [2025-02-18 15:02:35 +0000] [7] [INFO] Booting worker with pid: 7
 [2025-02-18 15:02:35 +0000] [8] [INFO] Booting worker with pid: 8
 [2025-02-18 15:02:35 +0000] [7] [INFO] Worker exiting (pid: 7)
-Secrets Manager에서 RDS 비밀번호를 가져오는 중 오류 발생: An error occurred (AccessDeniedException) when calling the GetSecretValue operation: User: arn:aws:sts::707677861059:assumed-role/tf-eks-managed-node-role/i-0ba4f68615e54a8eb is not authorized to perform: secretsmanager:GetSecretValue on resource: rds!db-58935263-034e-4e28-9291-51feff61e554 because no identity-based policy allows the secretsmanager:GetSecretValue action
+Secrets Manager에서 RDS 비밀번호를 가져오는 중 오류 발생: An error occurred (AccessDeniedException) when calling the GetSecretValue operation: User: arn:aws:sts::XXXX:assumed-role/tf-eks-managed-node-role/i-0ba4f68615e54a8eb is not authorized to perform: secretsmanager:GetSecretValue on resource: rds!db-XXXX because no identity-based policy allows the secretsmanager:GetSecretValue action
 [2025-02-18 15:02:35 +0000] [8] [INFO] Worker exiting (pid: 8)
 ```
 <br>
