@@ -117,8 +117,8 @@ terraform 코드로 생성한 노드 그룹 : `tf-eks-managed-node-group` ⇒ �
 2. 시작 템플릿 없이 테라폼 코드 생성
 
 해보기 <br>
-1. 07-eks-6 <br>
-2. 07-eks-5 
+1. [`07-eks-6`](https://github.com/hj-s18/terraform-aws/tree/07-eks-6) <br>
+2. [`07-eks-5`](https://github.com/hj-s18/terraform-aws/tree/07-eks-5) 
 
 <br>
 <br>
@@ -126,4 +126,4 @@ terraform 코드로 생성한 노드 그룹 : `tf-eks-managed-node-group` ⇒ �
 
 # launch template에 문법오류 있었음
 
-⇒ 브랜치 `07-eks-6`
+⇒ 브랜치 [`07-eks-6`](https://github.com/hj-s18/terraform-aws/tree/07-eks-6)
