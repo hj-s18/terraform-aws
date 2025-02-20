@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask-app
+  name: testcode-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: flask
+      app: testcode
   template:
     metadata:
       labels:
-        app: flask
+        app: testcode
     spec:
-      serviceAccountName: secrets-account-sa  # IRSA 적용 추가
+      serviceAccountName: secrets-account-sa     # IRSA 적용 추가
       containers:
-      - name: test-container
-        image: XXXX.dkr.ecr.ap-northeast-2.amazonaws.com/test-ecr-namespace/test-ecr:latest  # ECR에 있는 이미지
+      - name: testcode-container
+        image: <ECR_URI>:<tag>     # 가져올 이미지 입력
         ports:
         - containerPort: 5000
         envFrom:
@@ -33,6 +33,6 @@ spec:
               name: mysql-secret
               key: MYSQL_DATABASE
         - name: AWS_SECRET_NAME
-          value: "rds!db-XXXX"   # Secrets Manager의 시크릿 이름
+          value: "rds!db-XXXX"     # Secrets Manager에서 RDS에 사용하는 보안 암호 이름 확인하여 수정
         - name: AWS_REGION
           value: "ap-northeast-2"
