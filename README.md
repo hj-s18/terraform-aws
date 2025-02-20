@@ -1,4 +1,4 @@
-# 목적 : RDS를 사용하는 EKS 서비스 배포해보기
+# 목적 : RDS를 사용하는 EKS 서비스 배포
 
 [`08-test-1-eks-nginx`](https://github.com/hj-s18/terraform-aws/tree/08-test-1-eks-nginx) 에서 간단한 nginx를 EKS로 배포해보았다. <br>
 
