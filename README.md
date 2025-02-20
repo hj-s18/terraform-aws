@@ -137,6 +137,10 @@ EOF
 
 # 생성한 정책 AWS에 등록
 
+<br>
+
+### AWS에 정책 등록
+
 ```
 # AWS에 정책 등록
 aws iam create-policy --policy-name SecretsManagerIRSAReadPolicy --policy-document file://secrets-irsa-policy.json
