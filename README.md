@@ -40,8 +40,10 @@ testcode        latest      76904a4957bd     41 seconds ago     539MB
 ![ecr](https://github.com/user-attachments/assets/a13f6597-f695-420d-9271-2c552eb7a447)
 
 <br>
+<br>
+<br>
 
-생성 완료된 ECR 레포지토리 확인
+# 생성 완료된 ECR 레포지토리 확인
 
 ![ecrtest](https://github.com/user-attachments/assets/b6510dbe-cffd-4e11-ab3e-9222e6c0f948)
 
