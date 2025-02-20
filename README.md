@@ -94,7 +94,7 @@ EKS 클러스터에 IAM OIDC Provider 설정 <br>
 <br>
 <br>
 
-# 방법1 사용하기 
+# 방법2 사용하기 
 
 ### EKS 클러스터에 IAM OIDC Provider 설정
 
