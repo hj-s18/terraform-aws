@@ -1,28 +1,29 @@
 # Basic
 ```
-[ec2-user@ip-10-0-1-172 hj]$ kubectl get nodes -o wide
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl get nodes -o wide
 NAME                                            STATUS   ROLES    AGE   VERSION               INTERNAL-IP   EXTERNAL-IP   OS-IMAGE         KERNEL-VERSION                  CONTAINER-RUNTIME
 ip-10-0-3-117.ap-northeast-2.compute.internal   Ready    <none>   17h   v1.31.5-eks-5d632ec   10.0.3.117    <none>        Amazon Linux 2   5.10.233-224.894.amzn2.x86_64   containerd://1.7.25
 ip-10-0-4-148.ap-northeast-2.compute.internal   Ready    <none>   17h   v1.31.5-eks-5d632ec   10.0.4.148    <none>        Amazon Linux 2   5.10.233-224.894.amzn2.x86_64   containerd://1.7.25
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl get svc -o wide
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl get svc -o wide
 NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE   SELECTOR
 kubernetes   ClusterIP   172.20.0.1   <none>        443/TCP   17h   <none>
 
-[ec2-user@ip-10-0-1-172 hj]$ ls
+[ec2-user@ip-10-0-1-172 nginxtest]$ ls
 deployment.yaml  nginx.yaml  svc-cip.yaml  svc-lb.yaml  svc-np.yaml
-[ec2-user@ip-10-0-1-172 hj]$ kubectl apply -f deployment.yaml
+
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl apply -f deployment.yaml
 deployment.apps/nginx created
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl get deployment -o wide
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl get deployment -o wide
 NAME        READY   UP-TO-DATE   AVAILABLE   AGE    CONTAINERS       IMAGES        SELECTOR
 nginx       3/3     3            3           9s     nginxpod         nginx         app=nginxpod
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl get deployment -o wide --show-labels
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl get deployment -o wide --show-labels
 NAME        READY   UP-TO-DATE   AVAILABLE   AGE     CONTAINERS       IMAGES       SELECTOR       LABELS
 nginx       3/3     3            3           4m48s   nginxpod         nginx        app=nginxpod   <none>
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl describe deployment nginx
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl describe deployment nginx
 Name:                   nginx
 Namespace:              default
 CreationTimestamp:      Thu, 20 Feb 2025 01:45:13 +0000
@@ -57,13 +58,13 @@ Events:
   ----    ------             ----  ----                   -------
   Normal  ScalingReplicaSet  19m   deployment-controller  Scaled up replica set nginx-7998648bbc to 3
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl get pods -o wide
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl get pods -o wide
 NAME                         READY   STATUS    RESTARTS   AGE    IP           NODE                                            NOMINATED NODE   READINESS GATES
 nginx-7998648bbc-glbmn       1/1     Running   0          17s    10.0.3.102   ip-10-0-3-117.ap-northeast-2.compute.internal   <none>           <none>
 nginx-7998648bbc-xxrc9       1/1     Running   0          17s    10.0.3.36    ip-10-0-3-117.ap-northeast-2.compute.internal   <none>           <none>
 nginx-7998648bbc-z2r2l       1/1     Running   0          17s    10.0.4.109   ip-10-0-4-148.ap-northeast-2.compute.internal   <none>           <none>
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl get pods --show-labels
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl get pods --show-labels
 NAME                         READY   STATUS    RESTARTS   AGE     LABELS
 flask-app-66f4b576f4-4zf5q   1/1     Running   0          5h28m   app=flask,pod-template-hash=66f4b576f4
 flask-app-66f4b576f4-586rm   1/1     Running   0          5h28m   app=flask,pod-template-hash=66f4b576f4
@@ -71,7 +72,7 @@ nginx-7998648bbc-glbmn       1/1     Running   0          26m     app=nginxpod,p
 nginx-7998648bbc-xxrc9       1/1     Running   0          26m     app=nginxpod,pod-template-hash=7998648bbc
 nginx-7998648bbc-z2r2l       1/1     Running   0          26m     app=nginxpod,pod-template-hash=7998648bbc
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl describe pod nginx-7998648bbc-z2r2l
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl describe pod nginx-7998648bbc-z2r2l
 Name:             nginx-7998648bbc-z2r2l
 Namespace:        default
 Priority:         0
@@ -127,7 +128,7 @@ Events:
   Normal  Created    20m   kubelet            Created container nginxpod
   Normal  Started    20m   kubelet            Started container nginxpod
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl run shell -it --rm --image centos:7 bash
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl run shell -it --rm --image centos:7 bash
 If you don't see a command prompt, try pressing enter.
 
 [root@shell /]# curl 10.0.3.36:80
@@ -146,15 +147,15 @@ pod "shell" deleted
 # ClusterIP
 
 ```
-[ec2-user@ip-10-0-1-172 hj]$ kubectl apply -f svc-cip.yaml
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl apply -f svc-cip.yaml
 service/svc-cip created
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl get svc -o wide
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl get svc -o wide
 NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE   SELECTOR
 kubernetes   ClusterIP   172.20.0.1       <none>        443/TCP    17h   <none>
 svc-cip      ClusterIP   172.20.154.241   <none>        5000/TCP   9s    app=nginxpod
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl describe svc svc-cip
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl describe svc svc-cip
 Name:                     svc-cip
 Namespace:                default
 Labels:                   <none>
@@ -172,13 +173,13 @@ Session Affinity:         None
 Internal Traffic Policy:  Cluster
 Events:                   <none>
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl get ep
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl get ep
 NAME         ENDPOINTS                                  AGE
 kubernetes   10.0.3.191:443,10.0.4.145:443              18h
 svc-cip      10.0.3.102:80,10.0.3.36:80,10.0.4.109:80   2m49s
 svc-lb       10.0.3.102:80,10.0.3.36:80,10.0.4.109:80   24m
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl run shell -it --rm --image centos:7 bash
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl run shell -it --rm --image centos:7 bash
 If you don't see a command prompt, try pressing enter.
 
 [root@shell /]# curl 172.20.154.241:5000
@@ -192,7 +193,7 @@ exit
 Session ended, resume using 'kubectl attach shell -c shell -i -t' command when the pod is running
 pod "shell" deleted
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl delete svc svc-cip
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl delete svc svc-cip
 service "svc-cip" deleted
 ```
 
@@ -203,15 +204,15 @@ service "svc-cip" deleted
 # NodePort
 
 ```
-[ec2-user@ip-10-0-1-172 hj]$ kubectl apply -f svc-np.yaml
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl apply -f svc-np.yaml
 service/svc-np created
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl get svc -o wide
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl get svc -o wide
 NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE   SELECTOR
 kubernetes   ClusterIP   172.20.0.1       <none>        443/TCP          18h   <none>
 svc-np       NodePort    172.20.115.175   <none>        5000:32570/TCP   10s   app=nginxpod
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl describe svc svc-np
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl describe svc svc-np
 Name:                     svc-np
 Namespace:                default
 Labels:                   <none>
@@ -231,28 +232,38 @@ External Traffic Policy:  Cluster
 Internal Traffic Policy:  Cluster
 Events:                   <none>
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl get ep
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl get ep
 NAME         ENDPOINTS                                  AGE
 kubernetes   10.0.3.191:443,10.0.4.145:443              18h
 svc-np       10.0.3.102:80,10.0.3.36:80,10.0.4.109:80   26s
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl get nodes -o wide
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl get nodes -o wide
 NAME                                            STATUS   ROLES    AGE   VERSION               INTERNAL-IP   EXTERNAL-IP   OS-IMAGE         KERNEL-VERSION                  CONTAINER-RUNTIME
 ip-10-0-3-117.ap-northeast-2.compute.internal   Ready    <none>   17h   v1.31.5-eks-5d632ec   10.0.3.117    <none>        Amazon Linux 2   5.10.233-224.894.amzn2.x86_64   containerd://1.7.25
 ip-10-0-4-148.ap-northeast-2.compute.internal   Ready    <none>   17h   v1.31.5-eks-5d632ec   10.0.4.148    <none>        Amazon Linux 2   5.10.233-224.894.amzn2.x86_64   containerd://1.7.25
 
-[ec2-user@ip-10-0-1-172 hj]$ curl 10.0.3.117:32570
+[ec2-user@ip-10-0-1-172 nginxtest]$ curl 10.0.3.117:32570
 ^C
+```
 
-# tf-eks-node-group-sg 인바운드규칙에 Bastion 인스턴스에서 들어오는 모든 유형, 포트 추가
+<br>
+<br>
+<br>
 
-[ec2-user@ip-10-0-1-172 hj]$ curl 10.0.3.117:32570
+### tf-eks-node-group-sg 인바운드규칙에 Bastion 인스턴스에서 들어오는 모든 유형, 포트 추가
+
+![lb-test-bastion](https://github.com/user-attachments/assets/f7390147-c9df-4c5c-b941-6cb56da60721)
+
+<br>
+
+```
+[ec2-user@ip-10-0-1-172 nginxtest]$ curl 10.0.3.117:32570
 <h1>Welcome to nginx!</h1>
 
-[ec2-user@ip-10-0-1-172 hj]$ curl ip-10-0-3-117.ap-northeast-2.compute.internal:32570
+[ec2-user@ip-10-0-1-172 nginxtest]$ curl ip-10-0-3-117.ap-northeast-2.compute.internal:32570
 <h1>Welcome to nginx!</h1>
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl delete svc svc-np
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl delete svc svc-np
 service "svc-np" deleted
 ```
 
@@ -263,15 +274,15 @@ service "svc-np" deleted
 # LoadBalancer
 
 ```
-[ec2-user@ip-10-0-1-172 hj]$ kubectl apply -f svc-lb.yaml
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl apply -f svc-lb.yaml
 service/svc-lb created
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl get svc -o wide
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl get svc -o wide
 NAME         TYPE           CLUSTER-IP       EXTERNAL-IP                              PORT(S)          AGE   SELECTOR
 kubernetes   ClusterIP      172.20.0.1       <none>                                   443/TCP          18h   <none>
 svc-lb       LoadBalancer   172.20.211.139   XXXX-<계정ID>.<리전>.elb.amazonaws.com   5000:31644/TCP   10s   app=nginxpod
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl describe svc svc-lb
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl describe svc svc-lb
 Name:                     svc-lb
 Namespace:                default
 Labels:                   <none>
@@ -296,19 +307,19 @@ Events:
   Normal  EnsuringLoadBalancer  20s   service-controller  Ensuring load balancer
   Normal  EnsuredLoadBalancer   18s   service-controller  Ensured load balancer
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl get ep
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl get ep
 NAME         ENDPOINTS                                  AGE
 kubernetes   10.0.3.191:443,10.0.4.145:443              18h
 svc-lb       10.0.3.102:80,10.0.3.36:80,10.0.4.109:80   28s
 
-[ec2-user@ip-10-0-1-172 hj]$ curl XXXX-<계정ID>.<리전>.elb.amazonaws.com:5000
+[ec2-user@ip-10-0-1-172 nginxtest]$ curl XXXX-<계정ID>.<리전>.elb.amazonaws.com:5000
 <h1>Welcome to nginx!</h1>
 
 # svc-lb 라는 이름으로는 클러스터 IP만 호출 가능함
-[ec2-user@ip-10-0-1-172 hj]$ curl svc-lb:5000
+[ec2-user@ip-10-0-1-172 nginxtest]$ curl svc-lb:5000
 curl: (6) Could not resolve host: svc-lb
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl run shell -it --rm --image centos:7 bash
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl run shell -it --rm --image centos:7 bash
 If you don't see a command prompt, try pressing enter.
 
 [root@shell /]# curl svc-lb:5000
@@ -320,12 +331,24 @@ Session ended, resume using 'kubectl attach shell -c shell -i -t' command when t
 pod "shell" deleted
 
 # 로드밸런스 타입은 노드포트 타입도 포함함
-[ec2-user@ip-10-0-1-172 hj]$ curl 10.0.3.117:31644
+[ec2-user@ip-10-0-1-172 nginxtest]$ curl 10.0.3.117:31644
 <h1>Welcome to nginx!</h1>
 
-[ec2-user@ip-10-0-1-172 hj]$ kubectl delete svc svc-lb
+[ec2-user@ip-10-0-1-172 nginxtest]$ kubectl delete svc svc-lb
 service "svc-lb" deleted
 ```
+
+<br>
+<br>
+<br>
+
+### LoadBalancer 타입으로 서비스 만들면 AWS 서비스로 로드밸런서 추가됨
+
+보안그룹에도 추가됨 <br>
+서비스 삭제하면 로드밸런서는 삭제되지만, 보안그룹에 추가됐던 인바운드 규칙은 사라지지 않음 <br>
+
+![sg-svc-lb](https://github.com/user-attachments/assets/019e942b-6682-48ab-ade2-92edc48c206e)
+
 
 <br>
 <br>
