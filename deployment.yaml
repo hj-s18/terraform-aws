@@ -12,9 +12,10 @@ spec:
       labels:
         app: flask
     spec:
+      serviceAccountName: secrets-account-sa  # IRSA 적용 추가
       containers:
       - name: test-container
-        image: 707677861059.dkr.ecr.ap-northeast-2.amazonaws.com/test-ecr-namespace/test-ecr:latest
+        image: XXXX.dkr.ecr.ap-northeast-2.amazonaws.com/test-ecr-namespace/test-ecr:latest  # ECR에 있는 이미지
         ports:
         - containerPort: 5000
         envFrom:
@@ -32,6 +33,6 @@ spec:
               name: mysql-secret
               key: MYSQL_DATABASE
         - name: AWS_SECRET_NAME
-          value: "rds!db-58935263-034e-4e28-9291-51feff61e554"   # Secrets Manager의 시크릿 이름
+          value: "rds!db-XXXX"   # Secrets Manager의 시크릿 이름
         - name: AWS_REGION
           value: "ap-northeast-2"
