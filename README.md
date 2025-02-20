@@ -57,7 +57,7 @@ EKS의 워커 노드(EC2) 또는 파드가 AWS Secrets Manager에서 비밀번�
 
 ### 방법1 : IAM 정책 추가
 
-아래 정책을 AWS IAM에서 tf-eks-managed-node-role에 추가
+아래 AWS IAM 정책을 tf-eks-managed-node-role에 추가
 
 ```
 {
@@ -66,12 +66,18 @@ EKS의 워커 노드(EC2) 또는 파드가 AWS Secrets Manager에서 비밀번�
         {
             "Effect": "Allow",
             "Action": "secretsmanager:GetSecretValue",
-            "Resource": "arn:aws:secretsmanager:ap-northeast-2:707677861059:secret:rds!*"
+            "Resource": "arn:aws:secretsmanager:<리전>:<계정ID>:secret:rds!*"
         }
     ]
 }
 ```
 
+- AWS Secrets Manager에서 특정 비밀 값을 읽을 수 있는 권한 부여
+- 특정 리전의 특정 계정에 있는 secret에만 적용되는 권한
+- 비밀 이름이 "rds!"로 시작하는 모든 secret에 대해 적용
+
+<br>
+<br>
 <br>
 
 ### 방법2 : IRSA (IAM Role for Service Account) 적용
