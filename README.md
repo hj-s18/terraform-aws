@@ -33,11 +33,12 @@ kubectl apply -f .
 
 <br>
 
-# 例
+# 테스트 코드 배포해서 rds와 잘 연결되는지 통신 확인하기
 
 ```
 [ec2-user@ip-10-0-1-172 testcode]$ ls
 configmap.yaml  deployment.yaml  secret.yaml
+
 
 [ec2-user@ip-10-0-1-172 testcode]$ kubectl get ns
 NAME              STATUS   AGE
@@ -46,8 +47,10 @@ kube-node-lease   Active   30h
 kube-public       Active   30h
 kube-system       Active   30h
 
+
 [ec2-user@ip-10-0-1-172 testcode]$ kubectl create namespace testcode-namespace
 namespace/testcode-namespace created
+
 
 [ec2-user@ip-10-0-1-172 testcode]$ kubectl get ns
 NAME                 STATUS   AGE
@@ -57,17 +60,21 @@ kube-public          Active   30h
 kube-system          Active   30h
 testcode-namespace   Active   3s
 
+
 [ec2-user@ip-10-0-1-172 testcode]$ kubectl get pods -n testcode-namespace
 No resources found in testcode-namespace namespace.
+
 
 [ec2-user@ip-10-0-1-172 testcode]$ kubectl apply -f .
 configmap/mysql-config created
 deployment.apps/testcode-deployment created
 secret/mysql-secret created
 
+
 [ec2-user@ip-10-0-1-172 testcode]$ kubectl get deployment -n testcode-namespace
 NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
 testcode-deployment   2/2     2            2           91s
+
 
 [ec2-user@ip-10-0-1-172 testcode]$ kubectl get pods -o wide -n testcode-namespace
 NAME                                   READY   STATUS    RESTARTS   AGE    IP           NODE                                            NOMINATED NODE   READINESS GATES
@@ -84,10 +91,13 @@ testcode-deployment-759fd8b8c8-g9ff2   1/1     Running   0          115s   10.0.
 ```
 [ec2-user@ip-10-0-1-172 testcode]$ kubectl create service clusterip testcode-svc --tcp=8080:5000 -n testcode-namespace --dry-run=client -o yaml > testcode-svc-cip.yaml
 
+
 [ec2-user@ip-10-0-1-172 testcode]$ ls
 configmap.yaml  deployment.yaml  secret.yaml  testcode-svc-cip.yaml
 
+
 [ec2-user@ip-10-0-1-172 testcode]$ vi testcode-svc-cip.yaml
+
 
 [ec2-user@ip-10-0-1-172 testcode]$ kubectl apply -f testcode-svc-cip.yaml
 service/testcode-svc created
@@ -105,11 +115,14 @@ service/testcode-svc created
 NAME           TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE     SELECTOR
 testcode-svc   ClusterIP   172.20.244.125   <none>        8080/TCP   9m32s   app=testcode
 
+
 [ec2-user@ip-10-0-1-172 testcode]$ kubectl run shell -it --rm --image centos:7 bash
 If you don't see a command prompt, try pressing enter.
 
+
 [root@shell /]# curl 172.20.244.125:8080
 ^C
+
 
 [root@shell /]# exit
 exit
@@ -131,6 +144,7 @@ NAME                                   READY   STATUS    RESTARTS   AGE
 testcode-deployment-759fd8b8c8-957jx   1/1     Running   0          33m
 testcode-deployment-759fd8b8c8-g9ff2   1/1     Running   0          33m
 
+
 [ec2-user@ip-10-0-1-172 testcode]$ kubectl logs testcode-deployment-759fd8b8c8-957jx -n testcode-namespace
 [2025-02-20 15:06:33 +0000] [1] [INFO] Starting gunicorn 21.2.0
 [2025-02-20 15:06:33 +0000] [1] [INFO] Listening at: http://0.0.0.0:5000 (1)
@@ -138,7 +152,7 @@ testcode-deployment-759fd8b8c8-g9ff2   1/1     Running   0          33m
 [2025-02-20 15:06:33 +0000] [7] [INFO] Booting worker with pid: 7
 [2025-02-20 15:06:33 +0000] [8] [INFO] Booting worker with pid: 8
 [2025-02-20 15:06:33 +0000] [7] [INFO] Worker exiting (pid: 7)
-Secrets Manager에서 RDS 비밀번호를 가져오는 중 오류 발생: An error occurred (AccessDeniedException) when calling the GetSecretValue operation: User: arn:aws:sts::707677861059:assumed-role/tf-eks-managed-node-role/i-003def7cd9d3c3d2f is not authorized to perform: secretsmanager:GetSecretValue on resource: rds!db-7cfd83dd-5b79-42a7-acd1-7c009e4aae8a because no identity-based policy allows the secretsmanager:GetSecretValue action
+Secrets Manager에서 RDS 비밀번호를 가져오는 중 오류 발생: An error occurred (AccessDeniedException) when calling the GetSecretValue operation: User: arn:aws:sts::XXXX:assumed-role/tf-eks-managed-node-role/i-003def7cd9d3c3d2f is not authorized to perform: secretsmanager:GetSecretValue on resource: rds!db-XXXX because no identity-based policy allows the secretsmanager:GetSecretValue action
 [2025-02-20 15:06:33 +0000] [8] [INFO] Worker exiting (pid: 8)
 ...
 ```
@@ -367,6 +381,7 @@ testcode-svc   ClusterIP   172.20.244.125   <none>        8080/TCP   42m   app=t
 [ec2-user@ip-10-0-1-172 testcode]$ kubectl run shell -it --rm --image centos:7 -n testcode-namespace bash
 If you don't see a command prompt, try pressing enter.
 
+
 [root@shell /]# curl 172.20.244.125:8080
 
     <h1>상품 관리</h1>
@@ -388,6 +403,7 @@ If you don't see a command prompt, try pressing enter.
 <title>500 Internal Server Error</title>
 <h1>Internal Server Error</h1>
 <p>The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.</p>
+
 
 [root@shell /]# exit
 exit
@@ -443,8 +459,10 @@ UnboundLocalError: local variable 'connection' referenced before assignment
 [ec2-user@ip-10-0-1-172 testcode]$ kubectl run shell -it --rm --image centos:7 -n testcode-namespace bash
 If you don't see a command prompt, try pressing enter.
 
+
 [root@shell /]# curl 172.20.244.125:8080/items
 <h1>저장된 상품 목록</h1><ul><li>Americano - 2000.00원</li></ul><br><a href='/'>상품 추가하기</a>
+
 
 [root@shell /]# exit
 exit
@@ -470,6 +488,7 @@ exit
 [ec2-user@ip-10-0-1-172 testcode]$ kubectl run shell -it --rm --image centos:7
 If you don't see a command prompt, try pressing enter.
 
+
 [root@shell /]# curl 172.20.244.125:8080
 
     <h1>상품 관리</h1>
@@ -483,10 +502,46 @@ If you don't see a command prompt, try pressing enter.
     <br>
     <a href="/items">저장된 상품 보기</a>
 
+
 [root@shell /]# exit
 exit
 Session ended, resume using 'kubectl attach shell -c shell -i -t' command when the pod is running
 pod "shell" deleted
+```
+
+<br>
+<br>
+<br>
+
+---
+
+# 참고 코드
+
+```
+[ec2-user@ip-10-0-1-172 testcode]$ kubectl get all -n testcode-namespace
+NAME                                      READY   STATUS    RESTARTS   AGE
+pod/testcode-deployment-6cc546794-96cmg   1/1     Running   0          26m
+pod/testcode-deployment-6cc546794-9kmks   1/1     Running   0          26m
+
+NAME                   TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+service/testcode-svc   ClusterIP   172.20.244.125   <none>        8080/TCP   60m
+
+NAME                                  READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/testcode-deployment   2/2     2            2           26m
+
+NAME                                            DESIRED   CURRENT   READY   AGE
+replicaset.apps/testcode-deployment-6cc546794   2         2         2       26m
+
+
+[ec2-user@ip-10-0-1-172 testcode]$ kubectl delete -f .
+configmap "mysql-config" deleted
+deployment.apps "testcode-deployment" deleted
+secret "mysql-secret" deleted
+service "testcode-svc" deleted
+
+
+[ec2-user@ip-10-0-1-172 testcode]$ kubectl get all -n testcode-namespace
+No resources found in testcode-namespace namespace.
 ```
 
 <br>
