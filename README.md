@@ -54,10 +54,8 @@ Secrets Manager에서 RDS 비밀번호를 가져오는 중 오류 발생: An err
 EKS의 워커 노드(EC2) 또는 파드가 AWS Secrets Manager에서 비밀번호를 가져올 수 있도록 적절한 IAM 권한을 부여해야함
 
 <br>
-<br>
-<br>
 
-## 방법1 : IAM 정책 추가
+### 방법1 : IAM 정책 추가
 
 아래 정책을 AWS IAM에서 tf-eks-managed-node-role에 추가
 
@@ -75,10 +73,8 @@ EKS의 워커 노드(EC2) 또는 파드가 AWS Secrets Manager에서 비밀번�
 ```
 
 <br>
-<br>
-<br>
 
-## 방법2 : IRSA (IAM Role for Service Account) 적용
+### 방법2 : IRSA (IAM Role for Service Account) 적용
 
 Pod 단위에서 AWS 리소스에 접근할 수 있도록 IRSA 활용 <br>
 ⇒ 노드의 모든 pod에 접근 권한이 주어지지 않고 원하는 파드에만 권한을 주어 특정 파드가 직접 AWS 리소스에 접근 가능 <br>
@@ -93,6 +89,8 @@ EKS 클러스터에 IAM OIDC Provider 설정 <br>
 <br>
 <br>
 <br>
+
+# 방법1 사용하기 
 
 ### EKS 클러스터에 IAM OIDC Provider 설정
 
