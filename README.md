@@ -1,5 +1,5 @@
 # `07-eks-3` 브랜치 문제 해결 과정 
-⇒ 수정된 코드는 `07-eks-3` 브랜치에 있음
+⇒ 현재 브랜치(`07-eks-3`) 에서 바로 코드 수정함
 
 <br>
 <br>
@@ -18,7 +18,7 @@ ami-0fa05db9e3c145f63
 
 RDS 생성할 때 default로 만들어지는 것은 테라폼이 다 만들어지기 전까지 이름을 알 수 없어서 Secrets Manager 새로 만들어서 연결하려고 했음 <br>
 그런데 테라폼 코드에서 문법에 맞지 않다고 해서 테라폼 다 만들어진 후 가져와야 함 <br>
-terraform 으로 Secrets Manager 생성하면 어떻게 될지 궁금해서 생성해봄 <br>
+지금은 필요없지만, terraform 으로 Secrets Manager 생성하면 어떻게 될지 궁금해서 생성해봄 <br>
 
 <br>
 
@@ -71,16 +71,16 @@ resource "aws_secretsmanager_secret" "tf_rds_secret" {
 <br>
 <br>
 
-# 오류 해결
+# 오류 해결방안 고민
 
-`07-eks-1` 은 terraform apply 했을 때 오류 안 났음 <br>
+[`07-eks-1`](https://github.com/hj-s18/terraform-aws/tree/07-eks-1) 은 terraform apply 했을 때 오류 안 났음 <br>
 launch template 생성하여 노드그룹의 보안그룹 생성 후 오류남 <br>
 launch template 또는 보안그룹에 문제가 있을 것임 <br>
 
 <br>
 
 모듈로 EKS 생성한 다른 조 보안그룹 그대로 가져옴 <br>
-⇒ 수정된 코드 : `07-eks-4` 브랜치의 `✏️eks_cluster.tf`, `✏️eks_nodegroup.tf`
+⇒ 수정된 코드 : [`07-eks-4`](https://github.com/hj-s18/terraform-aws/tree/07-eks-4) 브랜치의 `✏️eks_cluster.tf`, `✏️eks_nodegroup.tf`
 
 <br>
 <br>
