@@ -49,6 +49,10 @@ kubectl apply -f .
 
 # 테스트 코드 배포해서 rds와 잘 연결되는지 통신 확인하기
 
+<br>
+
+### testcode-namespace 네임스페이스에 yaml 파일로 파드 배포
+
 ```
 [ec2-user@ip-10-0-1-172 testcode]$ ls
 configmap.yaml  deployment.yaml  secret.yaml
@@ -100,7 +104,7 @@ testcode-deployment-759fd8b8c8-g9ff2   1/1     Running   0          115s   10.0.
 <br>
 <br>
 
-# 서비스 생성하기 (ClusterIP)
+### 서비스 생성하기 (ClusterIP)
 
 ```
 [ec2-user@ip-10-0-1-172 testcode]$ kubectl create service clusterip testcode-svc --tcp=8080:5000 -n testcode-namespace --dry-run=client -o yaml > testcode-svc-cip.yaml
@@ -121,7 +125,7 @@ service/testcode-svc created
 <br>
 <br>
 
-# 아직은 페이지 안 뜸
+# 페이지 안 뜸
 
 ```
 # ClusterIP는 클러스터 내부통신용 이므로 테스트 pod 하나 생성 후 들어가서 curl 명령 해보기
@@ -148,7 +152,7 @@ pod "shell" deleted
 <br>
 <br>
 
-# 파드 로그 확인
+### 파드 로그 확인
 
 ⇒ 오류 로그 확인 : Secrets Manager에서 RDS 비밀번호를 가져오는 중 오류 발생
 
@@ -175,7 +179,7 @@ Secrets Manager에서 RDS 비밀번호를 가져오는 중 오류 발생: An err
 <br>
 <br>
 
-# deployment 지우고 오류 수정 후 다시 배포해야 함
+### deployment 지우고 오류 수정 후 다시 배포해보자.
 
 ```
 [ec2-user@ip-10-0-1-172 testcode]$ kubectl delete deployment testcode-deployment -n testcode-namespace
