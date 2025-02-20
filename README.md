@@ -322,6 +322,9 @@ pod "shell" deleted
 # 로드밸런스 타입은 노드포트 타입도 포함함
 [ec2-user@ip-10-0-1-172 hj]$ curl 10.0.3.117:31644
 <h1>Welcome to nginx!</h1>
+
+[ec2-user@ip-10-0-1-172 hj]$ kubectl delete svc svc-lb
+service "svc-lb" deleted
 ```
 
 <br>
