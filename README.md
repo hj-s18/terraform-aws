@@ -35,14 +35,20 @@ If you specify ec2_ssh_key, but do not specify this configuration when you creat
 
 remote_access는 22번 포트로 노드에 접근할 수 있도록 하는 것임 <br>
 
-보안그룹을 연결해주는 방법은 아님 ⇒ [`07-eks-06`](https://github.com/hj-s18/terraform-aws/tree/07-eks-6) 에서 다시 수정함
+보안그룹을 연결해주는 방법은 아님 <br>
+
+⇒ [`07-eks-06`](https://github.com/hj-s18/terraform-aws/tree/07-eks-6) 에서 다시 수정함
 
 
 <br>
 <br>
 <br>
 
-# 노드그룹 생성 오류 났었음 ⇒ `07-eks-5` 브랜치에 바로 수정함
+---
+
+#### 일단 잘못된 방향이긴 했는데, 코드 수정한 것 정리해 둠
+
+# 노드그룹 생성 오류 났었음 ⇒ 현재 브랜치(`07-eks-5`)에 바로 수정함
 
 ```
 ╷
