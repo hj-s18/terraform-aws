@@ -41,10 +41,6 @@ kubectl apply -f .
 <br>
 <br>
 
----
-
-<br>
-
 # 테스트 코드 배포해서 rds와 잘 연결되는지 통신 확인하기
 
 ```
@@ -524,8 +520,6 @@ pod "shell" deleted
 <br>
 <br>
 <br>
-
----
 
 # 참고 코드
 
