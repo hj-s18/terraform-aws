@@ -139,7 +139,7 @@ exit
 <br>
 <br>
 
-## 例
+# mysql 설치 → RDS 접속 → table 생성 → 확인용 데이터 삽입 例
 
 ```
 [ec2-user@ip-10-0-1-172 ~]$ sudo yum update -y
@@ -221,3 +221,7 @@ Bye
 <br>
 
 ⇒ [`08-test-2-testcode-yaml`](https://github.com/hj-s18/terraform-aws/tree/08-test-2-testcode-yaml) : k8s로 yaml 파일 배포하기
+
+<br>
+<br>
+<br>
