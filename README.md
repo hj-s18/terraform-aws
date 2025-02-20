@@ -500,7 +500,9 @@ exit
 <br>
 <br>
 
-# 참고 : 다른 namespace에 있어도 통신 가능
+# 첨고
+
+### 다른 namespace에 있어도 노드들끼리 통신 가능
 
 ```
 [ec2-user@ip-10-0-1-172 testcode]$ kubectl run shell -it --rm --image centos:7
@@ -531,7 +533,7 @@ pod "shell" deleted
 <br>
 <br>
 
-# 참고 코드
+### 참고 코드
 
 ```
 [ec2-user@ip-10-0-1-172 testcode]$ kubectl get all -n testcode-namespace
@@ -564,7 +566,7 @@ No resources found in testcode-namespace namespace.
 <br>
 <br>
 
-# 참고 : Secrets Manager 이렇게 생성하면 이름도 정할 수 있음
+### Secrets Manager 이렇게 생성하면 이름도 정할 수 있음
 Terraform에서 자동으로 만들면 이름 이상함 <br>
 
 ```
