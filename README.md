@@ -31,9 +31,10 @@ If you specify ec2_ssh_key, but do not specify this configuration when you creat
 <br>
 <br>
 
-# 아랫부분 잘못 생각해서 진행한 트러블슈팅임..
+# 아랫부분은 문제를 잘못 생각해서 진행한 트러블슈팅임
 
-remote_access는 22번 포트로 노드에 접근할 수 있도록 하는 것임.
+remote_access는 22번 포트로 노드에 접근할 수 있도록 하는 것임
+보안그룹을 연결해주는 방법은 아님 ⇒ [`07-eks-06`](https://github.com/hj-s18/terraform-aws/tree/07-eks-6)
 
 
 <br>
