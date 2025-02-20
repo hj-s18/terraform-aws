@@ -268,7 +268,7 @@ flask-app-66f4b576f4-586rm   1/1     Running   0          49s
 <br>
 <br>
 
-# RDS 연결 실패 원인 : 보안그룹 설정
+### RDS 연결 실패 - 원인 : 보안그룹 설정
 
 RDS ↔ 노드 통신 필요 <br>
 ⇒ RDS에 보안그룹에 노드그룹에서 들어오는 인바운드 규칙 추가하기 <br>
@@ -308,13 +308,13 @@ UnboundLocalError: local variable 'connection' referenced before assignment
 <br>
 <br>
 
-# RDS 보안그룹에 노드 그룹에서 들어오는 3306포트 인바운드규칙 추가해줌
+### RDS 보안그룹에 노드 그룹에서 들어오는 3306포트 인바운드규칙 추가해줌
 ![image](https://github.com/user-attachments/assets/9a6ca64c-7cff-4da2-a3d3-726e6f526368)
 
 
 <br>
 
-# RDS 연결 성공
+### RDS 연결 성공
 
 ```
 # 다시 RDS와 연결되어야 볼 수 있는 페이지 접근해보기
