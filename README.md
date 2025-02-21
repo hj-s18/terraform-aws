@@ -8,6 +8,8 @@
 EKS managed node에서 Secrets Manager에 접근할 수 있는 권한이 필요하다. <br>
 노드그룹과 RDS가 어떻게 통신해야 하는지, 서비스가 RDS에 접근할 때 Secrets Manager에서 password를 어떻게 가져올 것인지 생각해보자. <br>
 
+<br>
+
 자세한 설명 : [📖.md](https://github.com/hj-s18/terraform-aws/blob/08-test-2-testcode-yaml/%F0%9F%93%96.md)
 
 <br>
