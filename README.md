@@ -10,7 +10,14 @@ EKS로 배포하는 파드들에 볼륨을 추가하려고 한다. <br>
 
 볼륨과 관련된 에드온 뿐 아니라 Ingress 등 필요한 에드온들도 추가해주자. <br>
 
-테라폼 코드를 직접 짜기보다 모듈을 이용하는 방식을 사용해볼 예정이다.
+테라폼 코드를 직접 짜기보다 모듈을 이용하는 방식을 사용해볼 예정이다. <br>
+
+<br>
+<br>
+<br>
+
+참고
+[헬름 공급자](https://registry.terraform.io/providers/hashicorp/helm/latest/docs)
 
 <br>
 <br>
