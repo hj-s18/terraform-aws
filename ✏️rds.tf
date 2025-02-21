@@ -23,6 +23,14 @@ resource "aws_security_group" "tf_rds_sg" {
     security_groups  = [aws_security_group.tf_bastion_sg.id]
   }
 
+  # EKS managed Node Group에서 접근 허용 추가
+  ingress {
+    from_port        = 3306
+    to_port          = 3306
+    protocol         = "tcp"
+    security_groups  = [aws_security_group.tf_eks_node_group_sg.id]
+  }
+
   # RDS의 아웃바운드 트래픽 허용
   egress {
     from_port   = 0
