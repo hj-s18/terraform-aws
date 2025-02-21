@@ -24,6 +24,28 @@ EKS로 배포하는 파드들에 볼륨을 추가하려고 한다. <br>
 <br>
 <br>
 
+# 계속 나타나는 오류
+
+```
+│ Error: execution error at (cluster-proportional-autoscaler/templates/deployment.yaml:3:3): options.target must be one of deployment, replicationcontroller, or replicaset
+│
+│   with module.eks_blueprints_addons.module.cluster_proportional_autoscaler.helm_release.this[0],
+│   on .terraform/modules/eks_blueprints_addons.cluster_proportional_autoscaler/main.tf line 9, in resource "helm_release" "this":
+│    9: resource "helm_release" "this" {
+│
+```
+
+`module.eks_blueprints_addons.eks_addons.enable_cluster_proportional_autoscaler = true`를 사용하면 HPA를 사용하지 않을 수도 있을 것 같아서 하고싶었는데 실패함 <br>
+
+어떤 다른 조건을 추가해야 하는지 모르겠음 <br>
+(에드온 추가 코드 아랫부분에서 주석처리된 부분이 이것저것 추가했던 조건들임) <br>
+
+일단 HPA를 반복 사용하면 같은 오토스케일링을 구현할 수도 있을 것 같아서 테라폼 코드에서는 제외하고 진행함 <br>
+
+<br>
+<br>
+<br>
+
 # Helm 프로바이더
 
 [`✏️eks_cluster.tf`](https://github.com/hj-s18/terraform-aws/blob/09-addon/%E2%9C%8F%EF%B8%8Feks_cluster.tf) 파일 수정 <br>
