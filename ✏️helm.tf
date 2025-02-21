@@ -28,14 +28,14 @@ provider "helm" {
 }
 
 # OIDC Thumbprint 데이터 소스
-data "aws_iam_openid_connect_thumbprint" "eks_thumbprint" {
-  url = aws_eks_cluster.tf_eks_cluster.identity[0].oidc[0].issuer
-}
+#data "aws_iam_openid_connect_thumbprint" "eks_thumbprint" {
+#  url = aws_eks_cluster.tf_eks_cluster.identity[0].oidc[0].issuer
+#}
 
 # OIDC 프로바이더 생성
 resource "aws_iam_openid_connect_provider" "tf_oidc_provider" {
-  client_id_list  = ["sts.amazonaws.com"]
-  thumbprint_list = [data.aws_iam_openid_connect_thumbprint.eks_thumbprint.thumbprint]
+  client_id_list  = ["sts.amazonaws.com"]  # # AWS에서 사용하는 기본 클라이언트 ID
+  # thumbprint_list = [data.aws_iam_openid_connect_thumbprint.eks_thumbprint.thumbprint]
   url             = aws_eks_cluster.tf_eks_cluster.identity[0].oidc[0].issuer
 }
 
