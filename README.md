@@ -101,8 +101,88 @@ version.BuildInfo{Version:"v3.17.1", GitCommit:"980d8ac1939e39138101364400756af2
 <br>
 <br>
 
-# 추가한 에드온
+# 트러블 슈팅
+
+```
+E0221 14:27:52.392528    7311 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: Get \"https://XXXX.gr7.ap-northeast-2.eks.amazonaws.com/api?timeout=32s\": dial tcp: lookup XXXX.gr7.ap-northeast-2.eks.amazonaws.com on 192.168.0.2:53: no such host"
+```
+
+<br>
+
+- EKS가 완전히 생성 후 Helm provider가 실행되도록 해야 함 
+  ⇒ privider에는 depends_on 사용 못함
+  ⇒ data source 활용
+
+- data source 사용 X <br>
+  ⇒ terraform이 직접 리소스를 생성하고 참조함 <br>
+  ⇒ EKS API가 즉시 응답하지 않을 가능성이 있음 <br>
+
+- data source 사용 O <br>
+  ⇒ 이미 생성된 리소스를 AWS API에서 조회함 <br>
+  ⇒ EKS가 완전히 활성화 된 후 실행됨 ⇒ 안정성이 더 높음 <br>
+
+<br>
+
+```
+# data source 추가하기
+data "aws_eks_cluster" "tf_eks_cluster" {
+  name = aws_eks_cluster.tf_eks_cluster.name
+}
+
+# Kubernetes Provider
+provider "kubernetes" {
+  host                   = data.aws_eks_cluster.tf_eks_cluster.endpoint   # depends_on 대신 data resource에서 AWS API 조회
+  cluster_ca_certificate = base64decode(aws_eks_cluster.tf_eks_cluster.certificate_authority[0].data)
+  exec {
+    api_version = "client.authentication.k8s.io/v1beta1"
+    args        = ["eks", "get-token", "--cluster-name", aws_eks_cluster.tf_eks_cluster.name]
+    command     = "aws"
+  }
+}
+
+# Helm Provider
+provider "helm" {
+  kubernetes {
+    host                   = data.aws_eks_cluster.tf_eks_cluster.endpoint   # depends_on 대신 data resource에서 AWS API 조회
+    cluster_ca_certificate = base64decode(aws_eks_cluster.tf_eks_cluster.certificate_authority[0].data)
+    exec {
+      api_version = "client.authentication.k8s.io/v1beta1"
+      args        = ["eks", "get-token", "--cluster-name", aws_eks_cluster.tf_eks_cluster.name]
+      command     = "aws"
+    }
+  }
+}
+```
 
 <br>
 <br>
 <br>
+
+# 참고 : OIDC Thumbprint 데이터 소스 관련 내용
+
+Terraform 최신 버전 (>= 1.3)과 AWS 최신 업데이트를 사용하면 thumbprint_list 없이도 OIDC 프로바이더 생성 가능 (Terraform이 자동으로 처리함) <br>
+이전에는 OIDC 프로바이더 설치에 인증서 지문(thumbprint)가 필수였지만, AWS가 업데이트 하면서 OIDC 프로바이더 생성 시 자동으로 인증을 처리하도록 개선됨 <br>
+
+Terraform 공식 문서에서도 thumbprint_list가 선택사항으로 바뀌었음 <br>
+AWS 공식 문서에서도 최신 EKS 에서는 OIDC 인증 사용 시 thumbprint가 자동으로 관리됨이 명시되어 있음 <br>
+
+<br>
+
+```
+## OIDC Thumbprint 데이터 소스
+#data "aws_iam_openid_connect_thumbprint" "eks_thumbprint" {
+#  url = aws_eks_cluster.tf_eks_cluster.identity[0].oidc[0].issuer
+#}
+
+# OIDC 프로바이더 생성
+resource "aws_iam_openid_connect_provider" "tf_oidc_provider" {
+  client_id_list  = ["sts.amazonaws.com"]
+  # thumbprint_list = [data.aws_iam_openid_connect_thumbprint.eks_thumbprint.thumbprint]
+  url             = aws_eks_cluster.tf_eks_cluster.identity[0].oidc[0].issuer
+}
+```
+
+<br>
+<br>
+<br>
+
