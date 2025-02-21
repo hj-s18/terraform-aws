@@ -11,7 +11,7 @@ resource "aws_eks_cluster" "tf_eks_cluster" {
       aws_subnet.tf_pri_sub_2.id
     ]
 
-    endpoint_public_access  = false                     # (Optional) 컨트롤 플래인이 kubectl과 통신할 때 사용하는 endpoint
+    endpoint_public_access  = true                      # (Optional) 컨트롤 플래인이 kubectl과 통신할 때 사용하는 endpoint : 모듈로 helm을 설치할 때 클러스터 외부에서 설치해야 함
     endpoint_private_access = true                      # (Optional) 컨트롤 플래인이 node의 kubelet과 통신할 때 사용하는 endpoint
 
     security_group_ids = [                              # (Optional)
