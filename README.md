@@ -16,6 +16,13 @@ EKS로 배포하는 파드들에 볼륨을 추가하려고 한다. <br>
 <br>
 <br>
 
+이 브랜치 clone 후 테라폼 코드 apply 전, 수정해야 할 파일 : [`✏️helm.tf`](https://github.com/hj-s18/terraform-aws/blob/09-addon/%E2%9C%8F%EF%B8%8Fhelm.tf) <br>
+<Route53 → 호스팅 영역 → 사용할 퍼블릭 호스팅 영역 → 호스팅 영역 ID> 수동으로 입력해줘야 함 <br>
+
+관련 내용 : [` 📖route53_public.md`](https://github.com/hj-s18/terraform-aws/blob/09-addon/%F0%9F%93%96route53_public.md)
+
+<br>
+
 참고자료 <br>
 [Helm Provider : Deploy software packages in Kubernetes.](https://registry.terraform.io/providers/hashicorp/helm/latest/docs) <br>
 [eks-blueprints-addons : Terraform module to deploy Kubernetes addons on Amazon EKS clusters.](https://registry.terraform.io/modules/aws-ia/eks-blueprints-addons/aws/latest) <br>
@@ -92,7 +99,7 @@ version.BuildInfo{Version:"v3.17.1", GitCommit:"980d8ac1939e39138101364400756af2
 <br>
 <br>
 
-# 에드온 추가
+# 추가한 에드온
 
 <br>
 <br>
