@@ -66,11 +66,16 @@ module.eks_blueprints_addons.cert_manager_route53_hosted_zone_arns 부분 수동
 <br>
 <br>
 
-# Terraform 코드 실행할 인스턴스에 Helm 설치
+# Terraform 실행 환경에는 Helm이 설치되어 있어야 함
 
 ```
 # Helm 설치
 curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+# Helm 설치 다른 방법
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
 
 # 설치된 Helm 버전 확인
 helm version
@@ -94,14 +99,13 @@ version.BuildInfo{Version:"v3.17.1", GitCommit:"980d8ac1939e39138101364400756af2
 
 # 모듈을 사용할 것이므로 모듈 코드 추가 후 terraform init 다시 해야 함
 
-```
-```
+terraform 상태파일 모두 삭제 후 terraform init 다시 해줌 : [`🔎init.txt`](https://github.com/hj-s18/terraform-aws/blob/09-addon/%F0%9F%94%8Einit.txt)
 
 <br>
 <br>
 <br>
 
-# 트러블 슈팅
+# 트러블 슈팅 1
 
 ```
 E0221 14:27:52.392528    7311 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: Get \"https://XXXX.gr7.ap-northeast-2.eks.amazonaws.com/api?timeout=32s\": dial tcp: lookup XXXX.gr7.ap-northeast-2.eks.amazonaws.com on 192.168.0.2:53: no such host"
@@ -186,3 +190,59 @@ resource "aws_iam_openid_connect_provider" "tf_oidc_provider" {
 <br>
 <br>
 
+# 트러블슈팅 2
+
+
+```
+╷
+│ Warning: Helm release "" was created but has a failed status. Use the helm command to investigate the error, correct it, then run Terraform again.
+│
+│   with module.eks_blueprints_addons.module.kube_prometheus_stack.helm_release.this[0],
+│   on .terraform/modules/eks_blueprints_addons.kube_prometheus_stack/main.tf line 9, in resource "helm_release" "this":
+│    9: resource "helm_release" "this" {
+│
+╵
+╷
+│ Error: 11 errors occurred:
+│       * Internal error occurred: failed calling webhook "mservice.elbv2.k8s.aws": failed to call webhook: Post "https://aws-load-balancer-webhook-service.kube-system.svc:443/mutate-v1-service?timeout=10s": no endpoints available for service "aws-load-balancer-webhook-service"
+####### 이 오류만 11줄 나옴 #######
+│
+│
+│
+│   with module.eks_blueprints_addons.module.kube_prometheus_stack.helm_release.this[0],
+│   on .terraform/modules/eks_blueprints_addons.kube_prometheus_stack/main.tf line 9, in resource "helm_release" "this":
+│    9: resource "helm_release" "this" {
+│
+╵
+```
+
+<br>
+
+문제 분석: Terraform 적용 중 kube-prometheus-stack Helm 릴리스 실패함 <br>
+이유 : aws-load-balancer-webhook-service가 정상적으로 실행되지 않아서 Helm 설치 실패했음 <br>
+
+AWS Load Balancer Controller가 정상적으로 배포되지 않음 <br>
+- aws-load-balancer-webhook-service.kube-system.svc:443 서비스가 없음
+- aws-load-balancer-controller Pod가 실행되지 않거나 CrashLoopBackOff 상태
+
+EKS 클러스터 내에서 Webhook 호출 실패 <br>
+- Kubernetes가 특정 API 요청을 보낼 때 aws-load-balancer-webhook-service를 찾지 못함
+- 해당 서비스가 존재하지 않거나, Pod가 정상적으로 실행되지 않음
+
+<br>
+
+일단, Helm 릴리스 강제 삭제 후 다시 설치해보자.
+
+<br>
+
+```
+# 기존 kube-prometheus-stack 삭제
+helm uninstall kube-prometheus-stack -n monitoring
+
+# Terraform 다시 적용
+terraform apply -auto-approve
+```
+
+<br>
+<br>
+<br>
