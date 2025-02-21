@@ -61,7 +61,10 @@ version.BuildInfo{Version:"v3.17.1", GitCommit:"980d8ac1939e39138101364400756af2
 <br>
 <br>
 
-#
+# 모듈을 사용할 것이므로 모듈 코드 추가 후 terraform init 다시 해야 함
+
+```
+```
 
 <br>
 <br>
