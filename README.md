@@ -4,8 +4,9 @@
 
 ### ssh 명령으로 생성된 bastion에 접속
 
+`terraform output`으로 <bastion_public_ip> 확인 ⇒ ssh 명령으로 생성된 bastion에 접속
+
 ```
-# terraform output에서 bastion_public_ip 확인 ⇒ ssh 명령으로 생성된 bastion에 접속
 ssh -i /home/terraform/bastion-key.pem ec2-user@<bastion_ip>
 ```
 
