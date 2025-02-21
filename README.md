@@ -10,7 +10,7 @@ EKS managed node에서 Secrets Manager에 접근할 수 있는 권한이 필요�
 
 <br>
 
-자세한 설명 : [📖.md](https://github.com/hj-s18/terraform-aws/blob/08-test-2-testcode-yaml/%F0%9F%93%96.md)
+자세한 설명 : [`📖.md`](https://github.com/hj-s18/terraform-aws/blob/08-test-2-testcode-yaml/%F0%9F%93%96.md)
 
 <br>
 <br>
