@@ -1,4 +1,4 @@
-# 목적 : RDS를 사용하는 EKS 서비스 배포
+# RDS를 사용하는 EKS 서비스 배포
 
 [`08-test-1-eks-nginx`](https://github.com/hj-s18/terraform-aws/tree/08-test-1-eks-nginx) 에서 간단한 nginx를 EKS로 배포해보았다. <br>
 
@@ -10,7 +10,9 @@ Secrets Manager를 사용하여 RDS에 접근할 수 있는 password를 생성�
 Secrets Manager에 접근할 수 있는 권한도 필요하다. <br>
 
 노드그룹과 RDS가 어떻게 통신해야 하는지, <br>
-서비스가 RDS에 접근할 때 Secrets Manager에서 password를 어떻게 가져올 것인지 생각해보자.
+서비스가 RDS에 접근할 때 Secrets Manager에서 password를 어떻게 가져올 것인지 생각해보자. <br>
+
+[📖.md](https://github.com/hj-s18/terraform-aws/blob/08-test-2-testcode-yaml/%F0%9F%93%96.md)
 
 <br>
 <br>
