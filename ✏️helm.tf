@@ -62,7 +62,7 @@ module "eks_blueprints_addons" {
   enable_metrics_server                  = true
   enable_external_dns                    = true
   enable_cert_manager                    = true
-  cert_manager_route53_hosted_zone_arns  = ["arn:aws:route53:::hostedzone/<Route53 → 호스팅 영역 → 사용할 퍼블릭 호스팅 영역 → 호스팅 영역 ID>"]
+  cert_manager_route53_hosted_zone_arns  = ["arn:aws:route53:::hostedzone/<Route53 → 호스팅 영역 → 사용할 퍼블릭 호스팅 영역 → 호스팅 영역 ID>"]   # 수정해주기
 
 
   # enable_cluster_proportional_autoscaler = true를 사용하면 HPA를 사용하지 않을 수도 있을 것 같아서 하고싶었는데 실패함
