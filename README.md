@@ -4,15 +4,11 @@
 
 ### ssh 명령으로 생성된 bastion에 접속
 
-terraform output에서 bastion_public_ip 확인 <br>
-⇒ ssh 명령으로 생성된 bastion에 접속
-
 ```
+# terraform output에서 bastion_public_ip 확인 ⇒ ssh 명령으로 생성된 bastion에 접속
 ssh -i /home/terraform/bastion-key.pem ec2-user@<bastion_ip>
 ```
 
-<br>
-<br>
 <br>
 
 ### aws cli 설정
@@ -25,8 +21,6 @@ sudo ./aws/install
 aws configure
 ```
 
-<br>
-<br>
 <br>
 
 ### kubectl 설치 및 EKS 클러스터와 kubectl 연결
