@@ -35,6 +35,38 @@ EKS로 배포하는 파드들에 볼륨을 추가하려고 한다. <br>
 <br>
 <br>
 
+# Terraform 코드 실행할 인스턴스에 Helm 설치
+
+```
+# Helm 설치
+curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+# 설치된 Helm 버전 확인
+helm version
+```
+
+```
+[terraform@ip-192-168-10-138 terraform-aws]$ curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+Downloading https://get.helm.sh/helm-v3.17.1-linux-amd64.tar.gz
+Verifying checksum... Done.
+Preparing to install helm into /usr/local/bin
+[sudo] password for terraform:
+helm installed into /usr/local/bin/helm
+
+[terraform@ip-192-168-10-138 terraform-aws]$ helm version
+version.BuildInfo{Version:"v3.17.1", GitCommit:"980d8ac1939e39138101364400756af2bdee1da5", GitTreeState:"clean", GoVersion:"go1.23.5"}
+```
+
+<br>
+<br>
+<br>
+
+#
+
+<br>
+<br>
+<br>
+
 # 에드온 추가
 
 <br>
