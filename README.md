@@ -173,7 +173,7 @@ AWS 공식 문서에서도 최신 EKS 에서는 OIDC 인증 사용 시 thumbprin
 <br>
 
 ```
-## OIDC Thumbprint 데이터 소스
+## OIDC Thumbprint 데이터 소스 : 필요 없음
 #data "aws_iam_openid_connect_thumbprint" "eks_thumbprint" {
 #  url = aws_eks_cluster.tf_eks_cluster.identity[0].oidc[0].issuer
 #}
@@ -181,7 +181,7 @@ AWS 공식 문서에서도 최신 EKS 에서는 OIDC 인증 사용 시 thumbprin
 # OIDC 프로바이더 생성
 resource "aws_iam_openid_connect_provider" "tf_oidc_provider" {
   client_id_list  = ["sts.amazonaws.com"]
-  # thumbprint_list = [data.aws_iam_openid_connect_thumbprint.eks_thumbprint.thumbprint]
+  # thumbprint_list = [data.aws_iam_openid_connect_thumbprint.eks_thumbprint.thumbprint]  # 필요 없음
   url             = aws_eks_cluster.tf_eks_cluster.identity[0].oidc[0].issuer
 }
 ```
@@ -205,7 +205,7 @@ resource "aws_iam_openid_connect_provider" "tf_oidc_provider" {
 ╷
 │ Error: 11 errors occurred:
 │       * Internal error occurred: failed calling webhook "mservice.elbv2.k8s.aws": failed to call webhook: Post "https://aws-load-balancer-webhook-service.kube-system.svc:443/mutate-v1-service?timeout=10s": no endpoints available for service "aws-load-balancer-webhook-service"
-####### 이 오류만 11줄 나옴 #######
+        ####### 이 오류만 11줄 나옴 #######
 │
 │
 │
