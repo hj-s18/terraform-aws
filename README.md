@@ -40,3 +40,10 @@ aws eks --region ap-northeast-2 update-kubeconfig --name tf-eks-cluster
 <br>
 <br>
 <br>
+
+자세한 설명 : [`📖.md`](https://github.com/hj-s18/terraform-aws/blob/08-test-1-eks-nginx/%F0%9F%93%96.md)
+
+<br>
+<br>
+<br>
+
