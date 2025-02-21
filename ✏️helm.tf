@@ -56,7 +56,7 @@ module "eks_blueprints_addons" {
   }
 
   enable_aws_load_balancer_controller    = true
-  # enable_cluster_proportional_autoscaler = true
+  # enable_cluster_proportional_autoscaler = true   # 이것 때문에 terraform apply 가 계속 오류났었음
   enable_karpenter                       = true
   enable_kube_prometheus_stack           = true
   enable_metrics_server                  = true
@@ -64,9 +64,12 @@ module "eks_blueprints_addons" {
   enable_cert_manager                    = true
   # cert_manager_route53_hosted_zone_arns  = ["arn:aws:route53:::hostedzone/XXXXXXXXXXXXX"]
 
+
+  # enable_cluster_proportional_autoscaler = true를 사용하면 HPA를 사용하지 않을 수도 있을 것 같아서 하고싶었는데 실패함
+  # 어떤 다른 조건을 추가해야 하는지 모르겠음 (아래 주석처리 부분이 이것저것 추가했던 조건들임)
+  /* 
   # depends_on = [aws_eks_cluster.tf_eks_cluster]
 
-  /*
   cluster_proportional_autoscaler = {
     nameOverride            = "kube-dns-autoscaler"
     config                  = {
@@ -82,7 +85,8 @@ module "eks_blueprints_addons" {
     }
   }
   */
-  
+
+
   tags                                   = {
     Environment                          = "dev"
   }
