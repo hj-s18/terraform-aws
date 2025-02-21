@@ -113,8 +113,7 @@ E0221 14:27:52.392528    7311 memcache.go:265] "Unhandled Error" err="couldn't g
 
 <br>
 
-- EKS가 완전히 생성 후 Helm provider가 실행되도록 해야 함 
-  ⇒ privider에는 depends_on 사용 못함
+- EKS가 완전히 생성 후 Helm provider가 실행되도록 해야 함 & privider에는 depends_on 사용 못함
   ⇒ data source 활용
 
 - data source 사용 X <br>
