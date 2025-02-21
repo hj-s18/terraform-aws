@@ -24,4 +24,19 @@ EKS로 배포하는 파드들에 볼륨을 추가하려고 한다. <br>
 <br>
 <br>
 
+# Helm 프로바이더
+
+[`✏️eks_cluster.tf`](https://github.com/hj-s18/terraform-aws/blob/09-addon/%E2%9C%8F%EF%B8%8Feks_cluster.tf) 파일 수정 <br>
+`aws_eks_cluster.tf_eks_cluster.vpc_config.endpoint_public_access  = true` <br>
+
+컨트롤 플래인이 kubectl과 통신할 때 사용하는 endpoint를 public에서 접근 가능하도록 설정해줘야 Terraform으로 helm 설치 가능함 <br>
+
+<br>
+<br>
+<br>
+
 # 에드온 추가
+
+<br>
+<br>
+<br>
