@@ -1,3 +1,13 @@
+# 도메인 구매 & Route53 Name Space 등록 방법
+
+<br>
+<br>
+<br>
+
+---
+
+<br>
+
 # 가비아에서 도매인 구매
 
 <br>
@@ -64,4 +74,15 @@ module.eks_blueprints_addons.cert_manager_route53_hosted_zone_arns 부분 수동
 <br>
 <br>
 <br>
+
+---
+
+<br>
+
+# Terraform apply 후 로드밸런서 생성하여 Route53에 연결해주기
+
+<br>
+<br>
+<br>
+
 
