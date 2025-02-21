@@ -56,7 +56,7 @@ module "eks_blueprints_addons" {
   }
 
   enable_aws_load_balancer_controller    = true
-  enable_cluster_proportional_autoscaler = true
+  # enable_cluster_proportional_autoscaler = true
   enable_karpenter                       = true
   enable_kube_prometheus_stack           = true
   enable_metrics_server                  = true
@@ -65,6 +65,23 @@ module "eks_blueprints_addons" {
   # cert_manager_route53_hosted_zone_arns  = ["arn:aws:route53:::hostedzone/XXXXXXXXXXXXX"]
 
   # depends_on = [aws_eks_cluster.tf_eks_cluster]
+
+  /*
+  cluster_proportional_autoscaler = {
+    nameOverride            = "kube-dns-autoscaler"
+    config                  = {
+      linear                = {
+        coresPerReplica     = 256
+        nodesPerReplica     = 16
+        min                 = 1
+        max                 = 100
+      }
+    }
+    options                 = {
+      target                = "deployment/coredns"
+    }
+  }
+  */
   
   tags                                   = {
     Environment                          = "dev"
