@@ -17,7 +17,7 @@ EKS로 배포하는 파드들에 볼륨을 추가하려고 한다. <br>
 <br>
 
 참고자료 <br>
-[헬름 공급자](https://registry.terraform.io/providers/hashicorp/helm/latest/docs) <br>
+[Helm Provider](https://registry.terraform.io/providers/hashicorp/helm/latest/docs) <br>
 [addon](https://registry.terraform.io/modules/aws-ia/eks-blueprints-addons/aws/latest) <br>
 
 <br>
